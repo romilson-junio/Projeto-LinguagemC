@@ -20,7 +20,7 @@ struct USUARIO_LOGADO Usuario[1];
 
 void USUARIO_LOGADO_login(){
     FILE *USUARIOS;
-    int i,j,op;
+    int i,j,op, tam=0;
     bool userInvalid;
     char enter;
     char usuario[100] = " ", senha[20] = " ";
@@ -77,20 +77,20 @@ void USUARIO_LOGADO_login(){
             } else if(i == 1){
 
                 printf("\n\n\n                                                             DIGITE SUA SENHA:   ");
-                scanf("%s", &senha);
-
-                /*
-                    fflush(stdin);
-                    for (j=0;j<6;j++){
-                        senha[j] = getch();
+                do{
+                     senha[tam] = getch();
+                     if(senha[tam] == 0x08 && tam > 0){ /*Backspace*/
+                        printf("\b \b");
+                        senha[tam] = 0x00;
+                        tam--;
+                     }else if (senha[tam] == 13){ /*Enter*/
+                        senha[tam] = 0x00;
+                        break;
+                     }else if (senha[tam] != 0x08){
                         putchar('*');
-                    }
-                    senha[j]='\0';
-
-                    enter = getch();
-                */
-
-
+                        tam++;
+                     }
+                }while(tam < 8) ;
             } else {
                 int msgboxID = MessageBox(NULL, "ENTRAR", "CONFIRMAR LOGIN", MB_YESNO | MB_DEFBUTTON1);
 				switch(msgboxID){
