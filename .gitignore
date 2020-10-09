@@ -41,7 +41,8 @@
 *.su
 *.idb
 *.pdb
-
+CheckList.xltm
+/bin
 # Kernel Module Compile Results
 *.mod*
 *.cmd

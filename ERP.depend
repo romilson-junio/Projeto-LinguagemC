@@ -1,0 +1,45 @@
+# depslib dependency file v1.0
+1601947475 source:c:\users\romilson\desktop\erp\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<locale.h>
+	<windows.h>
+	<ctype.h>
+	"ENTIDADES/USUARIO_LOGADO.h"
+	"ENTIDADES/USUARIOS.h"
+	"ENTIDADES/PRODUTOS.h"
+	"ENTIDADES/PEDIDOS.h"
+	"ENTIDADES/ITENSPEDIDO.h"
+	"ENTIDADES/CLIENTES.h"
+	"VIEW/Menu.h"
+	"Servicos/Servicos.h"
+	"Servicos/Alfabeto.h"
+
+1601767637 c:\users\romilson\desktop\erp\entidades\usuario_logado.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+	<locale.h>
+	<windows.h>
+
+1601949128 c:\users\romilson\desktop\erp\view\menu.h
+
+1599525988 c:\users\romilson\desktop\erp\entidades\usuarios.h
+
+1601775405 c:\users\romilson\desktop\erp\servicos\servicos.h
+
+1601949008 c:\users\romilson\desktop\erp\entidades\produtos.h
+	<stdbool.h>
+
+1601777334 c:\users\romilson\desktop\erp\entidades\pedidos.h
+
+1600815019 c:\users\romilson\desktop\erp\entidades\itenspedido.h
+	<stdbool.h>
+
+1601772568 c:\users\romilson\desktop\erp\entidades\clientes.h
+
+1601947729 c:\users\romilson\desktop\erp\servicos\alfabeto.h
+
