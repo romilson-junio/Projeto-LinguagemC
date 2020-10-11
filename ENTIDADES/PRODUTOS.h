@@ -30,26 +30,92 @@ void SELECT_ALL_FROM_PRODUTO(){
     quantidadeProdutos = i;
     fclose(PRODUTOS);
 }
+void SELECT_PRODUTO_FROM_PRODUTOS_WHERE_CODIGO(int codigo){
+    FILE *PRODUTOS;
+    int i, codigoFile, quantidadeFile, usuarioCadastranteFile;
+    float valorFile, taxaComissaoFile;
+    char nomeFile[50];
+    PRODUTOS = fopen("Banco/Produto.csv", "r");
+    i = 0;
+    while(fscanf(PRODUTOS, "%d ; %s ; %d ; %f ; %f ; %d ;\n", &codigoFile, &nomeFile, &quantidadeFile, &valorFile, &taxaComissaoFile, &usuarioCadastranteFile) != EOF){
+        if(codigo == codigoFile){
+            Produtos[i].codigo = codigoFile;
+            strcpy(Produtos[i].nome, nomeFile);
+            Produtos[i].quantidade = quantidadeFile;
+            Produtos[i].valor = valorFile;
+            Produtos[i].taxaComissao = taxaComissaoFile;
+            Produtos[i].usuarioCadastrante = usuarioCadastranteFile;
+            i++;
+            break;
+        }
+    }
+    quantidadeProdutos = i;
+    fclose(PRODUTOS);
+}
 
 void PRODUTOS_view(){
-    int j;
+    int i,j;
+    char usuario[100];
     SELECT_ALL_FROM_PRODUTO();
     system("cls");
-    printf("CÓDIGO    NOME   QUANTIDADE  VALOR  TAXA COMISSAO  USUARIO\n");
+    /*printf("CÓDIGO    NOME   QUANTIDADE  VALOR  TAXA COMISSAO  USUARIO\n");
     for(j = 0; j < quantidadeProdutos; j++){
         printf("%d       %s     %d     %.2f  %.2f  %d \n", Produtos[j].codigo, Produtos[j].nome, Produtos[j].quantidade, Produtos[j].valor, Produtos[j].taxaComissao, Produtos[j].usuarioCadastrante);
+    }*/
+    printf("\n\n");
+    printf("             ################################################################################################################################\n");
+    printf("             ##  CÓDIGO     #              NOME              #  QUANTIDADE #     VALOR      #  MARGEM DE LUCRO  #         USUARIO          ##\n");
+    printf("             ################################################################################################################################\n");
+
+    for(i = 0; i < quantidadeProdutos; i++){
+        strcpy(usuario, getNomeVendedor(Produtos[i].usuarioCadastrante));
+        printf("             ##  ");
+        printf("%3d        #  ", Produtos[i].codigo);
+        printf("%s ",Produtos[i].nome);
+        for(j = strlen(Produtos[i].nome); j < 29; j++){
+            printf(" ");
+        }
+
+        printf("#  %3d        #  R$ %9.2f  #  %3.2f %%          #" , Produtos[i].quantidade, Produtos[i].valor, Produtos[i].taxaComissao);
+        printf("  %s", usuario);
+        for(j = strlen(usuario); j < 24; j++){
+            printf(" ");
+        }
+        printf("##\n");
     }
+    printf("             ##                                                                                                                            ##\n");
+    printf("             ################################################################################################################################\n\n");
     optionViewProdutos();
 }
 
 void PRODUTOS_insert(){
-    int j;
+    int i,j;
+    char usuario[100];
     SELECT_ALL_FROM_PRODUTO();
     system("cls");
-    printf("CÓDIGO    NOME   QUANTIDADE  VALOR  TAXA COMISSAO  USUARIO\n");
-    for(j = 0; j < quantidadeProdutos; j++){
-        printf("%d       %s     %d     %.2f  %.2f  %d \n", Produtos[j].codigo, Produtos[j].nome, Produtos[j].quantidade, Produtos[j].valor, Produtos[j].taxaComissao, Produtos[j].usuarioCadastrante);
+    printf("\n\n");
+    printf("             ################################################################################################################################\n");
+    printf("             ##  CÓDIGO     #              NOME              #  QUANTIDADE #     VALOR      #  MARGEM DE LUCRO  #         USUARIO          ##\n");
+    printf("             ################################################################################################################################\n");
+
+    for(i = 0; i < quantidadeProdutos; i++){
+        strcpy(usuario, getNomeVendedor(Produtos[i].usuarioCadastrante));
+        printf("             ##  ");
+        printf("%3d        #  ", Produtos[i].codigo);
+        printf("%s ",Produtos[i].nome);
+        for(j = strlen(Produtos[i].nome); j < 29; j++){
+            printf(" ");
+        }
+
+        printf("#  %3d        #  R$ %9.2f  #  %3.2f %%          #" , Produtos[i].quantidade, Produtos[i].valor, Produtos[i].taxaComissao);
+        printf("  %s", usuario);
+        for(j = strlen(usuario); j < 24; j++){
+            printf(" ");
+        }
+        printf("##\n");
     }
+    printf("             ##                                                                                                                            ##\n");
+    printf("             ################################################################################################################################\n\n");
 }
 
 void PRODUTOS_add(){
@@ -99,15 +165,73 @@ int PRODUTOS_verificarEstoque(){
 
 }
 void PRODUTOS_baixoEstoque(){
-    int i;
+    int i, op, j;
+    char usuario[100];
     SELECT_ALL_FROM_PRODUTO();
-    printf("CÓDIGO    NOME   QUANTIDADE  VALOR  TAXA COMISSAO  USUARIO\n");
+    for(i = 1; i < 7; i++){
+        espaco();
+        espaco();
+        espaco();
+        espaco();
+        letraB(i);
+        letraA(i);
+        letraI(i);
+        letraX(i);
+        letraO(i);
+        espaco();
+        letraE(i);
+        letraS(i);
+        letraT(i);
+        letraO(i);
+        letraQ(i);
+        letraU(i);
+        letraE(i);
+        printf("\n");
+    }
+    printf("\n\n");
+    printf("             ################################################################################################################################\n");
+    printf("             ##  CÓDIGO     #              NOME              #  QUANTIDADE #     VALOR      #  MARGEM DE LUCRO  #         USUARIO          ##\n");
+    printf("             ################################################################################################################################\n");
+
     for(i = 0; i < quantidadeProdutos; i++){
         if(Produtos[i].quantidade <= 5){
-            printf("%d       %s     %d     %.2f  %.2f  %d \n", Produtos[i].codigo, Produtos[i].nome, Produtos[i].quantidade, Produtos[i].valor, Produtos[i].taxaComissao, Produtos[i].usuarioCadastrante);
+            strcpy(usuario, getNomeVendedor(Produtos[i].usuarioCadastrante));
+            printf("             ##  ");
+            printf("%3d        #  ", Produtos[i].codigo);
+            printf("%s ",Produtos[i].nome);
+            for(j = strlen(Produtos[i].nome); j < 29; j++){
+                printf(" ");
+            }
+
+            printf("#  %3d        #  R$ %9.2f  #  %3.2f %%          #" , Produtos[i].quantidade, Produtos[i].valor, Produtos[i].taxaComissao);
+            printf("  %s", usuario);
+            for(j = strlen(usuario); j < 24; j++){
+                printf(" ");
+            }
+            printf("##\n");
         }
     }
-    getchar();
+    printf("             ##                                                                                                                            ##\n");
+    printf("             ################################################################################################################################\n\n");
+    printf("             ####################\n");
+    printf("             ##                ##\n");
+    printf("             ## [ 1 ] VOLTAR   ##\n");
+    printf("             ##                ##\n");
+    printf("             ####################\n");
+    scanf("%d", &op);
+    switch(op){
+        case 1:
+            system("cls");
+            return 1;
+        break;
+        default:
+            system("color 4F");
+            MessageBox(0,"OPÇÃO INVÁLIDA!\n", "BAIXO ESTOQUE",0);
+            system("color 0F");
+            system("cls");
+            PRODUTOS_baixoEstoque();
+        break;
+    }
 }
 int PRODUTOS_verificarDisponibilidade(int idProduto, int quantidade){
     int i;
@@ -123,46 +247,138 @@ int PRODUTOS_verificarDisponibilidade(int idProduto, int quantidade){
     }
     return 0;
 }
+void PRODUTOS_atualizarEstoqueProduto(){
+    FILE *PRODUTOS;
+    int codigo,quantidade, indice,i;
+    char usuario[100];
+    printf("Informe o código do produto\n");
+    scanf("%d", &codigo);
+    SELECT_ALL_FROM_PRODUTO();
+    for(i = 0; i < quantidadeProdutos; i++){
+        if(codigo == Produtos[i].codigo){
+            indice = i;
+            break;
+        }
+    }
+    system("cls");
+    tituloTabelaAtualizarEstoque();
+    printf("\n");
+    strcpy(usuario, getNomeVendedor(Produtos[indice].usuarioCadastrante));
+    printf("             ######################   ##########################################\n");
+    printf("             ##                  ##   ##                                      ##\n");
+    printf("             ## CÓDIGO : %3d     ##   ##  PRODUTO: %s", Produtos[indice].codigo, Produtos[indice].nome);
+    for(i = strlen(Produtos[indice].nome); i < 27; i++){
+        printf(" ");
+    }
+    printf("##\n");
+    printf("             ##                  ##   ##                                      ##\n");
+    printf("             ######################   ##########################################\n");
+    printf("\n");
+    printf("             ######################   #########################  ###################################\n");
+    printf("             ##                  ##   ##                     ##  ##                               ##\n");
+    printf("             ## QUANTIDADE : %3d ##   ##  VALOR: %7.2f     ##  ##  MARGEM DE LUCRO: %7.2f     ##\n" ,Produtos[indice].quantidade, Produtos[indice].valor, Produtos[indice].taxaComissao);
+    printf("             ##                  ##   ##                     ##  ##                               ##\n");
+    printf("             ######################   #########################  ###################################\n");
+    printf("\n");
+    printf("             ################################################################\n");
+    printf("             ##                                                            ##\n");
+    printf("             ##  USUÁRIO: %s", usuario);
+    for(i = strlen(usuario); i < 49; i++){
+        printf(" ");
+    }
+    printf("##\n");
+    printf("             ##                                                            ##\n");
+    printf("             ################################################################\n");
+    printf("\n");
+    printf("             Informe a nova quantidade\n");
+    scanf("%d", &quantidade);
+    Produtos[indice].quantidade = Produtos[indice].quantidade + quantidade;
+
+    PRODUTOS = fopen("Banco/Produto.csv", "w");
+    for(i = 0; i < quantidadeProdutos; i++){
+        fprintf(PRODUTOS,"%d ; %s ; %d ; %.2f ; %.2f ; %d ;\n",
+                Produtos[i].codigo, Produtos[i].nome, Produtos[i].quantidade, Produtos[i].valor, Produtos[i].taxaComissao, Produtos[i].usuarioCadastrante);
+
+    }
+    fclose(PRODUTOS);
+
+}
+
 void optionViewProdutos(){
     int op;
 
     if(strcmp(getPerfilLogado(), "Gerente") == 0 || strcmp(getPerfilLogado(), "Estoquista") == 0){
-    printf("\n\n");
-    printf("####################   #######################\n");
-    printf("##                ##   ##                   ##\n");
-    printf("## [ 1 ] VOLTAR   ##   ## [ 2 ] CADASTRAR   ##\n");
-    printf("##                ##   ##                   ##\n");
-    printf("####################   #######################\n");
-
-    scanf("%d", &op);
-    switch(op){
-        case 1:
-            menu();
-        break;
-        case 2:
-            PRODUTOS_add();
-        break;
-        default:
-            system("color 4F");
-            MessageBox(0,"OPÇÃO INVÁLIDA!\n", "PRODUTOS",0);
-            system("color 0F");
-            PRODUTOS_view();
-        }
-    } else if(strcmp(getPerfilLogado(), "Vendedor") == 0) {
-        printf("\n\n\ [ 1 ] VOLTAR  [ 2 ] OUTRA COISA\n\n");
-        scanf("%d", &op);
+        if(strcmp(getPerfilLogado(), "Estoquista") == 0){
+            printf("\n\n");
+            printf("             ####################   #######################   ##############################\n");
+            printf("             ##                ##   ##                   ##   ##                          ##\n");
+            printf("             ## [ 1 ] VOLTAR   ##   ## [ 2 ] CADASTRAR   ##   ## [ 3 ] ATUALIZAR ESTOQUE  ##\n");
+            printf("             ##                ##   ##                   ##   ##                          ##\n");
+            printf("             ####################   #######################   ##############################\n");
+                    scanf("%d", &op);
         switch(op){
             case 1:
                 menu();
             break;
             case 2:
-                printf("Outra Coisa!\n");
+                PRODUTOS_add();
             break;
+            case 3:
+                PRODUTOS_atualizarEstoqueProduto();
+            break;
+            default:
+                system("color 4F");
+                MessageBox(0,"OPÇÃO INVÁLIDA!\n", "PRODUTOS",0);
+                system("color 0F");
+                PRODUTOS_view();
+            }
+
+        } else {
+            printf("\n\n");
+            printf("             ####################   #######################\n");
+            printf("             ##                ##   ##                   ##\n");
+            printf("             ## [ 1 ] VOLTAR   ##   ## [ 2 ] CADASTRAR   ##\n");
+            printf("             ##                ##   ##                   ##\n");
+            printf("             ####################   #######################\n");
+            scanf("%d", &op);
+            switch(op){
+                case 1:
+                    menu();
+                break;
+                case 2:
+                    PRODUTOS_add();
+                break;
+                default:
+                    system("color 4F");
+                    MessageBox(0,"OPÇÃO INVÁLIDA!\n", "PRODUTOS",0);
+                    system("color 0F");
+                    PRODUTOS_view();
+            }
+        }
+
+    } else if(strcmp(getPerfilLogado(), "Vendedor") == 0) {
+        printf("             ####################\n");
+        printf("             ##                ##\n");
+        printf("             ## [ 1 ] VOLTAR   ##\n");
+        printf("             ##                ##\n");
+        printf("             ####################\n");
+        scanf("%d", &op);
+        switch(op){
+            case 1:
+                menu();
+            break;
+            /*case 2:
+                printf("Outra Coisa!\n");
+            break;*/
             default:
                 MessageBox(0,"OPÇÃO INVÁLIDA!\n", "PRODUTOS",0);
         }
     }else{
-        printf("\n\n\ [ 1 ] VOLTAR\n\n");
+        printf("             ####################\n");
+        printf("             ##                ##\n");
+        printf("             ## [ 1 ] VOLTAR   ##\n");
+        printf("             ##                ##\n");
+        printf("             ####################\n");
         scanf("%d", &op);
         switch(op){
             case 1:
@@ -200,6 +416,32 @@ char* getNomeProduto(int codigo){
         if(codigo == Produtos[i].codigo){
             return Produtos[i].nome;
         }
+    }
+}
+void tituloTabelaAtualizarEstoque(){
+    int i;
+    for(i = 0; i < 7; i++){
+        espaco();
+        espaco();
+        espaco();
+        espaco();
+        letraD(i);
+        letraA(i);
+        letraD(i);
+        letraO(i);
+        letraS(i);
+        espaco();
+        letraD(i);
+        letraO(i);
+        espaco();
+        letraP(i);
+        letraR(i);
+        letraO(i);
+        letraD(i);
+        letraU(i);
+        letraT(i);
+        letraO(i);
+        printf("\n");
     }
 }
 

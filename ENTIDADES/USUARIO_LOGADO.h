@@ -91,6 +91,7 @@ void USUARIO_LOGADO_login(){
                         tam++;
                      }
                 }while(tam < 8) ;
+
             } else {
                 int msgboxID = MessageBox(NULL, "ENTRAR", "CONFIRMAR LOGIN", MB_YESNO | MB_DEFBUTTON1);
 				switch(msgboxID){

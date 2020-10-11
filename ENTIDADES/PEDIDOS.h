@@ -69,7 +69,7 @@ void PEDIDOS_add(){
     int result ,codigo, idVendedor, idProduto, quantidade, valido;
     float valor;
     float valorTotal;
-    char cpf[11], nomeProduto[100];
+    char cpf[20], nomeProduto[100];
     int dia, mes, ano, carrinho, i,j, itens;
     carrinho = 0;
     codigo = quantidadePedidos+1;
@@ -179,7 +179,14 @@ void optionViewPedidos(){
     int op, pedido;
 
     if(strcmp(getPerfilLogado(), "Gerente") == 0 || strcmp(getPerfilLogado(), "Vendedor") == 0){
-    printf("\n\n\ [ 1 ] VOLTAR  [ 2 ] CADASTRAR  [ 3 ] DETALHAR\n\n");
+
+    printf("\n\n");
+    printf("             ####################   #######################   ######################\n");
+    printf("             ##                ##   ##                   ##   ##                  ##\n");
+    printf("             ## [ 1 ] VOLTAR   ##   ## [ 2 ] CADASTRAR   ##   ## [ 3 ] DETALHAR   ##\n");
+    printf("             ##                ##   ##                   ##   ##                  ##\n");
+    printf("             ####################   #######################   ######################\n");
+
     scanf("%d", &op);
     switch(op){
         case 1:
@@ -198,20 +205,25 @@ void optionViewPedidos(){
             PEDIDOS_view();
         }
     } else if(strcmp(getPerfilLogado(), "Estoquista") == 0) {
-        printf("\n\n\ [ 1 ] VOLTAR  [ 2 ] OUTRA COISA\n\n");
+        printf("             ####################\n");
+        printf("             ##                ##\n");
+        printf("             ## [ 1 ] VOLTAR   ##\n");
+        printf("             ##                ##\n");
+        printf("             ####################\n");
         scanf("%d", &op);
         switch(op){
             case 1:
                 menu();
             break;
-            case 2:
-                printf("Outra Coisa!\n");
-            break;
             default:
                 MessageBox(0,"OPÇÃO INVÁLIDA!\n", "PRODUTOS",0);
         }
     }else{
-        printf("\n\n\ [ 1 ] VOLTAR\n\n");
+        printf("             ####################\n");
+        printf("             ##                ##\n");
+        printf("             ## [ 1 ] VOLTAR   ##\n");
+        printf("             ##                ##\n");
+        printf("             ####################\n");
         scanf("%d", &op);
         switch(op){
             case 1:
