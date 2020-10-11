@@ -45,22 +45,32 @@ void SELECT_ALL_FROM_PEDIDOS(){
 }
 
 void PEDIDOS_view(){
-    int i;
+    int i,j;
     char nomeVendedor[100], nomeProduto[100];
     SELECT_ALL_FROM_PEDIDOS();
     system("cls");
-    printf("CODIGO VENDEDOR VALOR TOTAL CPF CLIENTE DATA\n");
+    tituloTabelaPedidos();
+    printf("\n");
+    printf("             ###################################################################################################################\n");
+    printf("             ##  CODIGO  #  VENDEDOR                              #  VALOR TOTAL      #    CPF CLIENTE   #        DATA        ##\n");
+    printf("             ###################################################################################################################\n");
     for(i = 0; i <quantidadePedidos; i++){
-        printf("%d  ", Pedidos[i].codigo);
+        printf("             ##  %3d     #", Pedidos[i].codigo);
         strcpy(nomeVendedor, getNomeVendedor(Pedidos[i].idVendedor));
-        printf("%s  ", nomeVendedor);
-        printf("%.2f  ", Pedidos[i].valorTotal);
-        printf("%s  ", Pedidos[i].cpfCliente);
-        printf("%2d/", Pedidos[i].dia);
-        printf("%2d/", Pedidos[i].mes);
-        printf("%4d\n", Pedidos[i].ano);
+        printf("  %s  ", nomeVendedor);
+        for(j = strlen(nomeVendedor); j < 36; j++){
+            printf(" ");
+        }
+        printf("#");
+        printf("  R$ %10.2f    #", Pedidos[i].valorTotal);
+        printf("  %s", Pedidos[i].cpfCliente);
+        for(j = strlen(Pedidos[i].cpfCliente); j < 16; j++){
+            printf(" ");
+        }
+        printf("#   %2d / %2d / %4d   ##\n", Pedidos[i].dia, Pedidos[i].mes, Pedidos[i].ano);
 
     }
+    printf("             ###################################################################################################################");
     optionViewPedidos();
 }
 void PEDIDOS_add(){
@@ -232,6 +242,25 @@ void optionViewPedidos(){
             default:
                 MessageBox(0,"OPÇÃO INVÁLIDA!\n", "PRODUTOS",0);
         }
+    }
+}
+void tituloTabelaPedidos(){
+    int i;
+    for(i=1;i<7;i++){
+        espaco();
+        espaco();
+        espaco();
+        espaco();
+        espaco();
+        espaco();
+        letraP(i);
+        letraE(i);
+        letraD(i);
+        letraI(i);
+        letraD(i);
+        letraO(i);
+        letraS(i);
+        printf("\n");
     }
 }
 #endif // PEDIDOS_H_INCLUDED
