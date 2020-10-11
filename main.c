@@ -5,6 +5,7 @@
 #include <locale.h>
 #include <windows.h>
 #include <ctype.h>
+#define BAIXO_ESTOQUE 10
 
 #include "ENTIDADES/USUARIO_LOGADO.h"
 #include "ENTIDADES/USUARIOS.h"

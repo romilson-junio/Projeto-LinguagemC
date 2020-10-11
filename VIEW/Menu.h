@@ -13,6 +13,7 @@ void menu(){
         subMenuPedidos(2);
         subMenuClientes(3);
         subMenuSair(0);
+
         scanf("%d", &op);
 
         switch(op){
@@ -28,13 +29,13 @@ void menu(){
 
         }
 
-
     } else if(strcmp(getPerfilLogado(), "Vendedor") == 0){
 
-        printf("[ 1 ] PRODUTOS   ");
-        printf("[ 2 ] PEDIDOS   ");
-        printf("[ 3 ] CLIENTES   ");
-        printf("[ 0 ] SAIR\n");
+        subMenuProdutos(1);
+        subMenuPedidos(2);
+        subMenuClientes(3);
+        subMenuSair(0);
+
         scanf("%d", &op);
         switch(op){
             case 0:
@@ -51,8 +52,10 @@ void menu(){
     }else if(strcmp(getPerfilLogado(), "Estoquista") == 0){
 
         verificarEstoque();
-        printf("[ 1 ] PRODUTOS   ");
-        printf("[ 0 ] SAIR\n");
+
+        subMenuProdutos(1);
+        subMenuSair(0);
+
         scanf("%d", &op);
         switch(op){
             case 0:
@@ -66,8 +69,9 @@ void menu(){
 
     } else if(strcmp(getPerfilLogado(), "Administrador") == 0){
 
-        printf("[ 1 ] USUARIOS   ");
-        printf("[ 0 ] SAIR\n");
+        subMenuUsuarios(1);
+        subMenuSair(0);
+
         scanf("%d", &op);
         switch(op){
             case 0:
@@ -85,14 +89,14 @@ void verificarEstoque(){
     int op;
     if(PRODUTOS_verificarEstoque() > 0){
         int msgboxID = MessageBox(NULL, "VISUALIZAR", "PRODUTOS COM BAIXO ESTOQUE", MB_YESNO | MB_DEFBUTTON1);
-				switch(msgboxID){
-                    case IDYES:
-                        op = 1;
-                    break;
-                    case IDNO:
-                        op = 2;
-                    break;
-				}
+            switch(msgboxID){
+                case IDYES:
+                    op = 1;
+                break;
+                case IDNO:
+                    op = 2;
+                break;
+            }
         }
         if(op == 1){
             PRODUTOS_baixoEstoque();
@@ -117,6 +121,25 @@ void subMenuPedidos(opcao){
         printf("\n");
     }
 }
+void subMenuEncerrar(opcao){
+    int j;
+    espaco();
+    espaco();
+    espaco();
+    espaco();
+    numberOption(opcao, j);
+    separador(j);
+    letraE(j);
+    letraN(j);
+    letraC(j);
+    letraE(j);
+    letraR(j);
+    letraR(j);
+    letraA(j);
+    letraR(j);
+    printf("\n");
+}
+
 subMenuProdutos(opcao){
     int k,j;
     for(j = 1; j < 7; j++){

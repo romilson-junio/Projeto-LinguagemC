@@ -2,44 +2,9 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="VIEW\Menu.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4154" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="ENTIDADES\PEDIDOS.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4488" topLine="201" />
-		</Cursor>
-	</File>
-	<File name="ENTIDADES\PRODUTOS.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4911" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="ENTIDADES\USUARIOS.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="162" topLine="0" />
-		</Cursor>
-	</File>
 	<File name="main.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="456" topLine="7" />
-		</Cursor>
-	</File>
-	<File name="Servicos\Servicos.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="447" topLine="2" />
-		</Cursor>
-	</File>
-	<File name="ENTIDADES\USUARIO_LOGADO.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4384" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="ENTIDADES\ITENSPEDIDO.h" open="1" top="1" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2200" topLine="73" />
 		</Cursor>
 	</File>
 	<File name="Servicos\Alfabeto.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -87,5 +52,40 @@
 			<Collapse line="799" />
 			<Collapse line="821" />
 		</Folding>
+	</File>
+	<File name="ENTIDADES\PEDIDOS.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4488" topLine="201" />
+		</Cursor>
+	</File>
+	<File name="ENTIDADES\ITENSPEDIDO.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2200" topLine="73" />
+		</Cursor>
+	</File>
+	<File name="ENTIDADES\USUARIOS.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="162" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="ENTIDADES\PRODUTOS.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4911" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="VIEW\Menu.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4154" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="ENTIDADES\USUARIO_LOGADO.h" open="1" top="1" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="830" topLine="18" />
+		</Cursor>
+	</File>
+	<File name="Servicos\Servicos.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="447" topLine="2" />
+		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
