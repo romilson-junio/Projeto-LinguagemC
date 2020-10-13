@@ -6,6 +6,7 @@ int quantidadeUsuarios;
 struct Usuarios{
     int id;
     char nome[100], usuario[50], perfil[50];
+
 };
 
 struct Usuarios BD_Usuarios[100];
@@ -31,8 +32,9 @@ void SELECT_ALL_FROM_USUARIOS(){
 void USUARIOS_novoUsuario(){
     SELECT_ALL_FROM_USUARIOS();
     FILE *USUARIOS;
-    int i, id;
-    char nome[100], usuario[50], senha[20], perfil[50];
+    int i, id, j;
+    char nome[100], usuario[50], senha[20], perfil[50], cpf[20];
+    int valido = 1;
     id = quantidadeUsuarios+1;
     fflush(stdin);
     printf("INFORME O USUARIO: \n");
@@ -46,15 +48,22 @@ void USUARIOS_novoUsuario(){
         }
     }
 
-    fflush(stdin);
     printf("INFORME O NOME: \n");
     gets(nome);
     fflush(stdin);
 
-    fflush(stdin);
-    printf("INFORME A SENHA: \n");
-    gets(senha);
-    fflush(stdin);
+    do{
+        system("cls");
+        printf("INFORME O CPF DO USUÁRIO\n");
+        scanf("%s", &cpf);
+        fflush(stdin);
+        valido = SERVICOS_validarCPF(cpf);
+
+    }while(valido == 0);
+
+    for(j = 0 ; j < 6 ; j++){
+        senha[j] = cpf[j];
+    }
 
     fflush(stdin);
     printf("INFORME O PERFIL: \n");

@@ -44,6 +44,49 @@ void SELECT_ALL_FROM_PEDIDOS(){
 
 }
 
+float PEDIDOS_valorTotalPedido(int idPedido){
+    int i;
+    SELECT_ALL_FROM_PEDIDOS();
+    for(i = 0; i < quantidadePedidos; i++){
+        if(Pedidos[i].codigo == idPedido){
+            return Pedidos[i].valorTotal;
+        }
+    }
+}
+
+char* PEDIDOS_cpfCliente(int idPedido){
+    int i;
+    SELECT_ALL_FROM_PEDIDOS();
+    for(i = 0; i < quantidadePedidos; i++){
+        if(Pedidos[i].codigo == idPedido){
+            return Pedidos[i].cpfCliente;
+        }
+    }
+}
+
+int PEDIDOS_idVendedor(int idPedido){
+    int i;
+    SELECT_ALL_FROM_PEDIDOS();
+    for(i = 0; i < quantidadePedidos; i++){
+        if(Pedidos[i].codigo == idPedido){
+            return Pedidos[i].idVendedor;
+        }
+    }
+}
+void getDataPedido(char* data, int idPedido){
+    int i;
+    char buffer[5];
+    SELECT_ALL_FROM_PEDIDOS();
+    for(i = 0; i < quantidadePedidos; i++){
+        if(Pedidos[i].codigo == idPedido){
+            strcat(data, itoa(Pedidos[i].dia, buffer, 10));
+            strcat(data, "/");
+            strcat(data, itoa(Pedidos[i].mes, buffer, 10));
+            strcat(data, "/");
+            strcat(data, itoa(Pedidos[i].ano, buffer, 10));
+        }
+    }
+}
 void PEDIDOS_view(){
     int i,j;
     char nomeVendedor[100], nomeProduto[100];
@@ -73,12 +116,25 @@ void PEDIDOS_view(){
     printf("             ###################################################################################################################");
     optionViewPedidos();
 }
+
+float PEDIDOS_consultarTotalPorCpf(char* cpf){
+    int i;
+    double valor = 0;
+    SELECT_ALL_FROM_PEDIDOS();
+    for(i = 0; i < quantidadePedidos; i++){
+        if(strcmp(Pedidos[i].cpfCliente, cpf) == 0){
+            valor += Pedidos[i].valorTotal;
+        }
+    }
+    return valor;
+}
 void PEDIDOS_add(){
     FILE *PEDIDOS;
     SELECT_ALL_FROM_PEDIDOS();
     int result ,codigo, idVendedor, idProduto, quantidade, valido;
     float valor;
-    float valorTotal;
+    bool desconto = false;
+    float valorTotal, valorComprasRealizadas;
     char cpf[20], nomeProduto[100];
     int dia, mes, ano, carrinho, i,j, itens;
     carrinho = 0;
@@ -92,6 +148,10 @@ void PEDIDOS_add(){
         valido = SERVICOS_validarCPF(cpf);
     }while(valido == 0);
     CLIENTES_concultarCPF(cpf);
+    valorComprasRealizadas = PEDIDOS_consultarTotalPorCpf(cpf);
+    if(valorComprasRealizadas > 5000){
+        desconto = true;
+    }
     system("cls");
     do{
         do{
@@ -123,8 +183,12 @@ void PEDIDOS_add(){
             system("cls");
         }while(result == 0 || result == 2);
 
-        printf("INFORME O VALOR\n");
-        scanf("%f", &valor);
+        valor = PRODUTOS_valor(idProduto);
+        printf("VALOR DO PRODUTO SEM DESCONTO: %.2f \n", valor);
+        if(desconto){
+            valor = valor - (valor * 0.10);
+            printf("VALOR DO PRODUTO COM DESCONTO: %.2f \n", valor);
+        }
 
         Carrinho[itens].idProduto = idProduto;
         Carrinho[itens].quantidade = quantidade;

@@ -52,7 +52,17 @@ void SELECT_PRODUTO_FROM_PRODUTOS_WHERE_CODIGO(int codigo){
     quantidadeProdutos = i;
     fclose(PRODUTOS);
 }
+float PRODUTOS_valor(int idProduto){
+    int i;
+    double valor;
+    SELECT_ALL_FROM_PRODUTO();
+    for(i = 0; i < quantidadeProdutos; i++){
+        if(idProduto == Produtos[i].codigo){
+            return Produtos[i].valor;
+        }
+    }
 
+}
 void PRODUTOS_view(){
     int i,j;
     char usuario[100];

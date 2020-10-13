@@ -26,6 +26,10 @@ void menu(){
             case 2:
                 PEDIDOS_view();
             break;
+            case 3:
+
+            break;
+
 
         }
 
