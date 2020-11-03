@@ -43,7 +43,7 @@
 
 1601947729 c:\users\romilson\desktop\erp\servicos\alfabeto.h
 
-1602379892 source:c:\users\romilson\documents\projeto-linguagemc\main.c
+1604356100 source:c:\users\romilson\documents\projeto-linguagemc\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -60,8 +60,9 @@
 	"VIEW/Menu.h"
 	"Servicos/Servicos.h"
 	"Servicos/Alfabeto.h"
+	"Servicos/Data.h"
 
-1602384869 c:\users\romilson\documents\projeto-linguagemc\entidades\usuario_logado.h
+1604346526 c:\users\romilson\documents\projeto-linguagemc\entidades\usuario_logado.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -69,21 +70,25 @@
 	<locale.h>
 	<windows.h>
 
-1599525988 c:\users\romilson\documents\projeto-linguagemc\entidades\usuarios.h
+1604383399 c:\users\romilson\documents\projeto-linguagemc\entidades\usuarios.h
 
-1602386052 c:\users\romilson\documents\projeto-linguagemc\entidades\produtos.h
+1604383894 c:\users\romilson\documents\projeto-linguagemc\entidades\produtos.h
 	<stdbool.h>
 
-1602388681 c:\users\romilson\documents\projeto-linguagemc\entidades\pedidos.h
+1604383457 c:\users\romilson\documents\projeto-linguagemc\entidades\pedidos.h
 
-1600815019 c:\users\romilson\documents\projeto-linguagemc\entidades\itenspedido.h
+1604383941 c:\users\romilson\documents\projeto-linguagemc\entidades\itenspedido.h
 	<stdbool.h>
 
-1601772568 c:\users\romilson\documents\projeto-linguagemc\entidades\clientes.h
+1604383986 c:\users\romilson\documents\projeto-linguagemc\entidades\clientes.h
 
-1602375839 c:\users\romilson\documents\projeto-linguagemc\view\menu.h
+1604375609 c:\users\romilson\documents\projeto-linguagemc\view\menu.h
 
-1601775405 c:\users\romilson\documents\projeto-linguagemc\servicos\servicos.h
+1604378678 c:\users\romilson\documents\projeto-linguagemc\servicos\servicos.h
 
 1601947729 c:\users\romilson\documents\projeto-linguagemc\servicos\alfabeto.h
+
+1602637945 c:\users\romilson\documents\projeto-linguagemc\servicos\data.h
+	<time.h>
+	<string.h>
 

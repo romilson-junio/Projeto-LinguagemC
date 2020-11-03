@@ -1,5 +1,8 @@
-1 ; Vagner_Santin ; Vagner ; 6789:; ; Gerente ;
-2 ; Romilson_Junio ; Romilson ; 6789:; ; Vendedor ;
-3 ; Laura_Lorrayne ; Laura ; 6789:; ; Administrador ;
-4 ; Laura_Lorrayne ; Teste ; 6789:; ; Estoquista ;
-
+{ (id): <1> ; (nome): <Vagner Santin> 	; (usuario): <Vagner> 		; (senha): <6789:;> ; (perfil): <Gerente> ; }
+{ (id): <2> ; (nome): <Romilson Junio> 	; (usuario): <Romilson> 	; (senha): <6789:;> ; (perfil): <Vendedor> ; }
+{ (id): <3> ; (nome): <Laura Lorrayne> 	; (usuario): <Laura> 		; (senha): <6789:;> ; (perfil): <Administrador> ; }
+{ (id): <4> ; (nome): <Laura Lorrayne> 	; (usuario): <Teste> 		; (senha): <6789:;> ; (perfil): <Estoquista> ; }
+{ (id): <5> ; (nome): <Teste Admin> 	; (usuario): <TesteA>		; (senha): <6789:;> ; (perfil): <Gerente> ; }
+{ (id): <6> ; (nome): <Teste Gerente> 	; (usuario): <TesteG>		; (senha): <589;86> ; (perfil): <Gerente> ; }
+{ (id): <7> ; (nome): <Teste Vendedor> 	; (usuario): <TesteV>		; (senha): <58=68>> ; (perfil): <Vendedor> ;
+}

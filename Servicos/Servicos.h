@@ -16,25 +16,36 @@ void SERVICOS_descriptografar(char* senha){
     return 1;
 }
 int SERVICOS_validarCPF(char* cpf){
+    char cpfValidar[16];
     int digito[11];
-    int D1, D2, i;
-
-    if(strcmp(cpf, "00000000000") == 0 ||
-       strcmp(cpf, "11111111111") == 0 ||
-       strcmp(cpf, "22222222222") == 0 ||
-       strcmp(cpf, "33333333333") == 0 ||
-       strcmp(cpf, "44444444444") == 0 ||
-       strcmp(cpf, "55555555555") == 0 ||
-       strcmp(cpf, "66666666666") == 0 ||
-       strcmp(cpf, "77777777777") == 0 ||
-       strcmp(cpf, "88888888888") == 0 ||
-       strcmp(cpf, "99999999999") == 0){
+    int D1, D2, i, j = 0;
+    if(strlen(cpf) < 11 || strlen(cpf) > 14){
+        MessageBox(0,"CPF INVÁLIDO!\n", "CPF",0);
+        return 0;
+    } else {
+        if(strcmp(cpf, "00000000000") == 0 ||
+        strcmp(cpf, "11111111111") == 0 ||
+        strcmp(cpf, "22222222222") == 0 ||
+        strcmp(cpf, "33333333333") == 0 ||
+        strcmp(cpf, "44444444444") == 0 ||
+        strcmp(cpf, "55555555555") == 0 ||
+        strcmp(cpf, "66666666666") == 0 ||
+        strcmp(cpf, "77777777777") == 0 ||
+        strcmp(cpf, "88888888888") == 0 ||
+        strcmp(cpf, "99999999999") == 0){
             MessageBox(0,"CPF INVÁLIDO!\n", "CPF",0);
             return 0;
 
        } else {
+           for(i = 0; i < 15; i++){
+                if(cpf[i] != '.' && cpf[i] != '-'){
+                    cpfValidar[j] = cpf[i];
+                    j++;
+                }
+           }
+            strcpy(cpf, cpfValidar);
            for(i = 0; i <= 11; i++){
-                digito[i] = cpf[i] - '0';
+                digito[i] = cpfValidar[i] - '0';
            }
 
            D1 = digito[0]*10 + digito[1]*9 + digito[2]*8 + digito[3]*7 + digito[4]*6 + digito[5]*5 + digito[6]*4 + digito[7]*3 + digito[8]*2;
@@ -54,6 +65,50 @@ int SERVICOS_validarCPF(char* cpf){
            }
 
         }
+    }
 
+}
+void receberValorInt(int *valor){
+    int res, vl;
+    do{
+        res = scanf("%d", &vl);
+        if(res == 0){
+            MessageBox(0,"VALOR INVÁLIDO\n", "ERRO",0);
+        }
+        fflush(stdin);
+    }while(res != 1);
+    (*valor) = vl;
+}
+
+void SERVICOS_receberValorFloat(float *valor){
+    int res;
+    float vl = 00;
+    do{
+        res = scanf("%f", &vl);
+        if(res == 0){
+            MessageBox(0,"VALOR INVÁLIDO\n", "ERRO",0);
+        }
+        fflush(stdin);
+    }while(res != 1);
+    (*valor) = vl;
+}
+void SERVICOS_formatCpf(char* cpf){
+    int i,j;
+    j = 0;
+    char cpfFormatado[16] = " ";
+    for(i = 0; i < 14; i++){
+        cpfFormatado[i] = cpf[j];
+        if(i == 2 || i == 6 || i == 10){
+            i++;
+            if(i == 11){
+                cpfFormatado[i] = '-';
+            } else {
+                cpfFormatado[i] = '.';
+            }
+        }
+
+        j++;
+    }
+    strcpy(cpf, cpfFormatado);
 }
 #endif // SERVICOS_H_INCLUDED

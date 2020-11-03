@@ -1,12 +1,14 @@
 #ifndef PEDIDOS_H_INCLUDED
 #define PEDIDOS_H_INCLUDED
 
+#define CODIGO "codigo"
+
 int quantidadePedidos;
 
 struct PEDIDO{
     int codigo, idVendedor;
     float valorTotal;
-    char cpfCliente[12];
+    char cpfCliente[15];
     int dia, mes, ano;
 };
 
@@ -20,41 +22,115 @@ struct CARRINHO{
 struct CARRINHO Carrinho[100];
 
 void SELECT_ALL_FROM_PEDIDOS(){
+
     FILE *PEDIDOS;
-    int codigoFILE, idVendedorFILE, i;
-    float valorTotalFile;
-    char cpfClienteFILE[100];
-    int diaFILE, mesFILE, anoFILE, op;
+    int i,j, n,indice = 0;
+
+    bool dado = false, var  = false, fim;
+    char variavel[15];
+    char dados[1000];
+    char codigoOld[5], idVendedorOld[5], valorOld[15], diaOld[4], mesOld[4], anoOld[6];
 
     PEDIDOS = fopen("Banco/Pedido.csv", "r");
-        i = 0;
-        while(fscanf(PEDIDOS,"%d ; %d ; %f ; %s ; %d ; %d ; %d ;\n",
-            &codigoFILE , &idVendedorFILE, &valorTotalFile, &cpfClienteFILE, &diaFILE, &mesFILE, &anoFILE) != EOF){
-                Pedidos[i].codigo = codigoFILE;
-                Pedidos[i].idVendedor = idVendedorFILE;
-                Pedidos[i].valorTotal = valorTotalFile;
-                strcpy(Pedidos[i].cpfCliente, cpfClienteFILE);
-                Pedidos[i].dia = diaFILE;
-                Pedidos[i].mes = mesFILE;
-                Pedidos[i].ano = anoFILE;
-                i++;
+    while((fgets(dados, sizeof(dados), PEDIDOS))!=NULL){
+        fim = false;
+        strcpy(codigoOld, "0");
+        strcpy(idVendedorOld, "0");
+        strcpy(diaOld, "0");
+        strcpy(mesOld, "0");
+        strcpy(anoOld, "0");
+
+        for(i = 0; i < 1000; i++){
+            switch(dados[i]){
+                case '<': n=0; dado = true; continue; break;
+                case '>': dado = false; continue; break;
+                case '(': j = 0; var = true; continue; break;
+                case ')': variavel[j] = '\000'; var = false; continue; break;
+                case '}': fim = true; break;
+            }
+
+            if(var && !fim){variavel[j] = dados[i]; j++;
+            } else if(dado && !fim){
+                     if(strcmp(variavel, CODIGO)     == 0){ codigoOld[n] = dados[i];}
+                else if(strcmp(variavel, "idVendedor") == 0){ idVendedorOld[n] = dados[i]; }
+                else if(strcmp(variavel, "valorTotal") == 0){ valorOld[n] = dados[i]; }
+                else if(strcmp(variavel, "cpfCliente") == 0){ Pedidos[indice].cpfCliente[n] = dados[i]; }
+                else if(strcmp(variavel, "dia")   == 0){ diaOld[n] = dados[i]; }
+                else if(strcmp(variavel, "mes")   == 0){ mesOld[n] = dados[i]; }
+                else if(strcmp(variavel, "ano")   == 0){ anoOld[n] = dados[i]; }
+
+                n++;
+            }
         }
-        quantidadePedidos = i;
+        Pedidos[indice].codigo = atoi(codigoOld);
+        Pedidos[indice].idVendedor = atoi(idVendedorOld);
+        sscanf(valorOld, "%f", &Pedidos[indice].valorTotal);
+        Pedidos[indice].dia = atoi(diaOld);
+        Pedidos[indice].mes = atoi(mesOld);
+        Pedidos[indice].ano = atoi(anoOld);
+        indice++;
+
+    }
+    quantidadePedidos = indice;
     fclose(PEDIDOS);
 
 }
 
+float PEDIDOS_valorTotalPedido(int idPedido){
+    int i;
+    SELECT_ALL_FROM_PEDIDOS();
+    for(i = 0; i < quantidadePedidos; i++){
+        if(Pedidos[i].codigo == idPedido){
+            return Pedidos[i].valorTotal;
+        }
+    }
+}
+
+char* PEDIDOS_cpfCliente(int idPedido){
+    int i;
+    SELECT_ALL_FROM_PEDIDOS();
+    for(i = 0; i < quantidadePedidos; i++){
+        if(Pedidos[i].codigo == idPedido){
+            return Pedidos[i].cpfCliente;
+        }
+    }
+}
+
+int PEDIDOS_idVendedor(int idPedido){
+    int i;
+    SELECT_ALL_FROM_PEDIDOS();
+    for(i = 0; i < quantidadePedidos; i++){
+        if(Pedidos[i].codigo == idPedido){
+            return Pedidos[i].idVendedor;
+        }
+    }
+}
+void getDataPedido(char* data, int idPedido){
+    int i;
+    char buffer[6];
+    SELECT_ALL_FROM_PEDIDOS();
+    for(i = 0; i < quantidadePedidos; i++){
+        if(Pedidos[i].codigo == idPedido){
+            strcat(data, itoa(Pedidos[i].dia, buffer, 10));
+            strcat(data, "/");
+            strcat(data, itoa(Pedidos[i].mes, buffer, 10));
+            strcat(data, "/");
+            strcat(data, itoa(Pedidos[i].ano, buffer, 10));
+        }
+    }
+}
 void PEDIDOS_view(){
     int i,j;
-    char nomeVendedor[100], nomeProduto[100];
+    char nomeVendedor[100], nomeProduto[100], cpf[16], data[16] = " ";
     SELECT_ALL_FROM_PEDIDOS();
     system("cls");
-    tituloTabelaPedidos();
-    printf("\n");
+    tituloTabela("      Pedidos");
+    printf("\n\n");
     printf("             ###################################################################################################################\n");
     printf("             ##  CODIGO  #  VENDEDOR                              #  VALOR TOTAL      #    CPF CLIENTE   #        DATA        ##\n");
     printf("             ###################################################################################################################\n");
     for(i = 0; i <quantidadePedidos; i++){
+        memset(data, '\000', strlen(data) * sizeof(char));
         printf("             ##  %3d     #", Pedidos[i].codigo);
         strcpy(nomeVendedor, getNomeVendedor(Pedidos[i].idVendedor));
         printf("  %s  ", nomeVendedor);
@@ -63,53 +139,85 @@ void PEDIDOS_view(){
         }
         printf("#");
         printf("  R$ %10.2f    #", Pedidos[i].valorTotal);
-        printf("  %s", Pedidos[i].cpfCliente);
-        for(j = strlen(Pedidos[i].cpfCliente); j < 16; j++){
+        strcpy(cpf,Pedidos[i].cpfCliente);
+
+        printf("  %s", SERVICOS_formatCpf(cpf));
+        for(j = strlen(cpf); j < 16; j++){
             printf(" ");
         }
-        printf("#   %2d / %2d / %4d   ##\n", Pedidos[i].dia, Pedidos[i].mes, Pedidos[i].ano);
+
+        getDataPedido(data, Pedidos[i].codigo);
+        printf("#   %s", data);
+        for(j = strlen(data); j < 17; j++){
+            printf(" ");
+        }
+        printf("##\n");
+
 
     }
     printf("             ###################################################################################################################");
     optionViewPedidos();
+}
+
+float PEDIDOS_consultarTotalPorCpf(char* cpf){
+    int i;
+    double valor = 0;
+    SELECT_ALL_FROM_PEDIDOS();
+    for(i = 0; i < quantidadePedidos; i++){
+        if(strcmp(Pedidos[i].cpfCliente, cpf) == 0){
+            valor += Pedidos[i].valorTotal;
+        }
+    }
+    return valor;
 }
 void PEDIDOS_add(){
     FILE *PEDIDOS;
     SELECT_ALL_FROM_PEDIDOS();
     int result ,codigo, idVendedor, idProduto, quantidade, valido;
     float valor;
-    float valorTotal;
-    char cpf[20], nomeProduto[100];
-    int dia, mes, ano, carrinho, i,j, itens;
+    bool desconto = false;
+    float valorTotal, valorComprasRealizadas;
+    char cpf[20], nomeProduto[100] = " ";
+    int dia, mes, ano, carrinho, i,j, itens, op;
     carrinho = 0;
-    codigo = quantidadePedidos+1;
+    codigo = PEDIDOS_gerarId();
     idVendedor = getIdLogado();
     itens = 0;
+    newDate();
+    dia = getDia();
+    mes = getMes();
+    ano = getAno();
     do{
-        printf("INFORME O CPF DO CLIENTE\n");
+        printf("             INFORME O CPF DO CLIENTE\n");
+        printf("             ");
         scanf("%s", &cpf);
         fflush(stdin);
         valido = SERVICOS_validarCPF(cpf);
     }while(valido == 0);
+
     CLIENTES_concultarCPF(cpf);
+    valorComprasRealizadas = PEDIDOS_consultarTotalPorCpf(cpf);
+    if(valorComprasRealizadas > 5000){
+        desconto = true;
+    }
     system("cls");
     do{
         do{
             PRODUTOS_insert();
             if(itens != 0){
-                printf("*********************************************\n");
-
                 for(j=0; j < itens;j++){
-                    strcpy(nomeProduto, getNomeProduto(Carrinho[j].idProduto));
-                    printf("%s %d %.f\n", nomeProduto, Carrinho[j].quantidade, Carrinho[j].valor);
+
+                    PEDIDOS_tabelaCarrinho(j, Carrinho[j].idProduto, Carrinho[j].quantidade, &Carrinho[j].valor);
                 }
-                printf("*********************************************\n");
+                printf("                                     ################################################################################\n");
             }
-            printf("INFORME O CÓDIGO DO PRODUTO                                                   Carrinho %d: \n", carrinho);
-            scanf("%d", &idProduto);
+            printf("\n                                     INFORME O CÓDIGO DO PRODUTO                                          Carrinho %d: \n", carrinho);
+            printf("                                     ");
+            receberValorInt(&idProduto);
             do{
-                printf("INFORME A QUANTIDADE DO PRODUTO\n");
-                scanf("%d", &quantidade);
+                printf("                                     INFORME A QUANTIDADE DO PRODUTO\n");
+                printf("                                     ");
+                receberValorInt(&quantidade);
             }while(quantidade == 0);
 
             result = PRODUTOS_verificarDisponibilidade(idProduto, quantidade);
@@ -123,8 +231,14 @@ void PEDIDOS_add(){
             system("cls");
         }while(result == 0 || result == 2);
 
-        printf("INFORME O VALOR\n");
-        scanf("%f", &valor);
+        valor = PRODUTOS_valor(idProduto);
+        printf("                                     VALOR DO PRODUTO SEM DESCONTO: %.2f \n", valor);
+        printf("                                     ");
+        if(desconto){
+            valor = valor - (valor * 0.10);
+            printf("                                     VALOR DO PRODUTO COM DESCONTO: %.2f \n", valor);
+            printf("                                     ");
+        }
 
         Carrinho[itens].idProduto = idProduto;
         Carrinho[itens].quantidade = quantidade;
@@ -133,56 +247,103 @@ void PEDIDOS_add(){
         valorTotal = valorTotal + (quantidade * valor);
         itens++;
     } while(novoProduto() == 1);
-    printf("*********************************************\n");
+
     for(j=0; j < itens;j++){
-        strcpy(nomeProduto, getNomeProduto(Carrinho[j].idProduto));
-        printf("%s %d %.f\n", nomeProduto, Carrinho[j].quantidade, Carrinho[j].valor);
+
+        PEDIDOS_tabelaCarrinho(j, Carrinho[j].idProduto, Carrinho[j].quantidade, &Carrinho[j].valor);
+
     }
-    printf("*********************************************\n");
+    printf("                                     ################################################################################\n");
+    int msgboxID = MessageBox(NULL, "PEDIDO", "DESEJA CONFIRMAR O PEDIDO", MB_YESNO | MB_DEFBUTTON1);
 
+    switch(msgboxID){
+        case IDYES:
 
-    printf("INFORME O ANO\n");
-    scanf("%d", &ano);
+            PEDIDOS = fopen("Banco/Pedido.csv", "a");
+            fprintf(PEDIDOS,
+                    "{ (codigo): <%d> ; (idVendedor): <%d> ; (valorTotal): <%.2f> ; (cpfCliente): <%s> ; (dia): <%d> ; (mes): <%d> ; (ano): <%d> ;}\n",
+                    codigo, idVendedor, valorTotal, cpf , dia , mes , ano);
 
-    printf("INFORME O MÊS\n");
-    scanf("%d", &mes);
+            fclose(PEDIDOS);
+            for(i=0; i < itens;i++){
+                ITENS_PEDIDO_add(codigo , Carrinho[i].idProduto ,Carrinho[i].valor , Carrinho[i].quantidade);
+            }
+            MessageBox(0,"PEDIDO CADASTRADO COM SUCESSO!\n", "PEDIDOS",0);
+            PEDIDOS_view();
+        break;
+        case IDNO:
+            for(i=0; i < itens;i++){
+                PRODUTOS_retornarDoEstoque(Carrinho[i].quantidade, Carrinho[i].idProduto);
+            }
 
-    printf("INFORME O DIA\n");
-    scanf("%d", &dia);
-    PEDIDOS = fopen("Banco/Pedido.csv", "a");
-
-        fprintf(PEDIDOS, "%d ; %d ; %.2f ; %s ; %d ; %d ; %d ;\n",
-            codigo, idVendedor, valorTotal, cpf , dia , mes , ano);
-
-    fclose(PEDIDOS);
-    for(i=0; i < itens;i++){
-        ITENS_PEDIDO_add(codigo , Carrinho[i].idProduto ,Carrinho[i].valor , Carrinho[i].quantidade);
+            PEDIDOS_view();
+        break;
     }
-    MessageBox(0,"PEDIDO CADASTRADO COM SUCESSO!\n", "PEDIDOS",0);
-    PEDIDOS_view();
 
 }
-int novoProduto(){
-    char opcao;
-    bool opcaoValida;
-    do{
-        opcaoValida = true;
-        printf("Deseja adicionar um novo produto! [ S ] [ N ]");
-        scanf(" %c", &opcao);
-        switch(opcao){
-            case 'S':
-            case 's':
-                return 1;
-                break;
-            case 'N':
-            case 'n':
-                return 0;
-                break;
-            default:
-                printf("OPÇÃO INVÁLIDA!");
-                opcaoValida = false;
+int PEDIDOS_gerarId(){
+    int i, codigo;
+    int maior = 0;
+    for(i = 0; i < quantidadePedidos; i++){
+        if(Pedidos[i].codigo > maior){
+            maior = Pedidos[i].codigo;
         }
-    }while(!opcaoValida);
+    }
+    codigo = maior + 1;
+    return codigo;
+
+}
+int PEDIDOS_excluirPedido(int idPedido){
+    int excluido = 0, i;
+    FILE *PEDIDOS;
+    SELECT_ALL_FROM_PEDIDOS();
+    PEDIDOS = fopen("Banco/Pedido.csv", "w");
+        for(i = 0; i < quantidadePedidos; i++){
+            if(Pedidos[i].codigo == idPedido){
+                excluido = 1;
+            } else {
+                fprintf(PEDIDOS,
+                    "{ (codigo): <%d> ; (idVendedor): <%d> ; (valorTotal): <%.2f> ; (cpfCliente): <%s> ; (dia): <%d> ; (mes): <%d> ; (ano): <%d> ;}\n",
+                    Pedidos[i].codigo, Pedidos[i].idVendedor, Pedidos[i].valorTotal, Pedidos[i].cpfCliente , Pedidos[i].dia , Pedidos[i].mes , Pedidos[i].ano);
+
+            }
+
+        }
+        fclose(PEDIDOS);
+        return excluido;
+}
+int novoProduto(){
+    int opcaoValida;
+    int msgboxID = MessageBox(NULL, "DESEJA ADICIONAR UM NOVO PRODUTO", "ADICIONAR PRODUTO", MB_YESNO | MB_DEFBUTTON1);
+    switch(msgboxID){
+        case IDYES:
+            opcaoValida = 1;
+        break;
+        case IDNO:
+            opcaoValida = 0;
+        break;
+    }
+    return opcaoValida;
+
+}
+void PEDIDOS_tabelaCarrinho(int j,int idProduto, int qtd, float *valor){
+    int i;
+    char nome[100] = " ";
+
+    if(j == 0){
+        printf("\n");
+        printf("                                     ################################################################################\n");
+        printf("                                     ##  PRODUTO                              #   QUANTIDADE   #  VALOR            ##\n");
+        printf("                                     ################################################################################\n");
+    }
+    strcpy(nome, getNomeProduto(idProduto));
+    printf("                                     ##  %s", nome);
+    for(i = strlen(nome); i < 37; i++){
+        printf(" ");
+    }
+    printf("#");
+    printf("   %3d          #",qtd);
+    printf("  R$ %11.2f   ##\n",(*valor));
 
 }
 void optionViewPedidos(){
@@ -196,8 +357,8 @@ void optionViewPedidos(){
     printf("             ## [ 1 ] VOLTAR   ##   ## [ 2 ] CADASTRAR   ##   ## [ 3 ] DETALHAR   ##\n");
     printf("             ##                ##   ##                   ##   ##                  ##\n");
     printf("             ####################   #######################   ######################\n");
-
-    scanf("%d", &op);
+    printf("\n              ");
+    receberValorInt(&op);
     switch(op){
         case 1:
             menu();
@@ -206,8 +367,9 @@ void optionViewPedidos(){
             PEDIDOS_add();
         break;
         case 3:
-            printf("INFORME O NÚMERO DO PEDIDO\n");
-            scanf("%d", &pedido);
+            printf("             INFORME O NÚMERO DO PEDIDO\n");
+            printf("             ");
+            receberValorInt(&pedido);
             ITENS_PEDIDO_view(pedido);
         break;
         default:
@@ -220,7 +382,8 @@ void optionViewPedidos(){
         printf("             ## [ 1 ] VOLTAR   ##\n");
         printf("             ##                ##\n");
         printf("             ####################\n");
-        scanf("%d", &op);
+        printf("\n              ");
+        receberValorInt(&op);
         switch(op){
             case 1:
                 menu();
@@ -234,7 +397,8 @@ void optionViewPedidos(){
         printf("             ## [ 1 ] VOLTAR   ##\n");
         printf("             ##                ##\n");
         printf("             ####################\n");
-        scanf("%d", &op);
+        printf("\n              ");
+        receberValorInt(&op);
         switch(op){
             case 1:
                 menu();
@@ -244,23 +408,5 @@ void optionViewPedidos(){
         }
     }
 }
-void tituloTabelaPedidos(){
-    int i;
-    for(i=1;i<7;i++){
-        espaco();
-        espaco();
-        espaco();
-        espaco();
-        espaco();
-        espaco();
-        letraP(i);
-        letraE(i);
-        letraD(i);
-        letraI(i);
-        letraD(i);
-        letraO(i);
-        letraS(i);
-        printf("\n");
-    }
-}
+
 #endif // PEDIDOS_H_INCLUDED

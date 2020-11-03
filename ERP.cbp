@@ -36,8 +36,10 @@
 		<Unit filename="ENTIDADES/USUARIOS.h" />
 		<Unit filename="ENTIDADES/USUARIO_LOGADO.h" />
 		<Unit filename="ENTIDADES/ITENSPEDIDO.h" />
+		<Unit filename="ENTIDADES/CLIENTES.h" />
 		<Unit filename="Servicos/Servicos.h" />
 		<Unit filename="Servicos/Alfabeto.h" />
+		<Unit filename="Servicos/Data.h" />
 		<Unit filename="VIEW/Menu.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
