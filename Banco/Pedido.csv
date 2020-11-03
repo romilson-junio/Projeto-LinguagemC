@@ -1,2 +1,10 @@
-1 ; 2 ; 2050,40 ; 03463177110 ; 1 ; 12 ; 2020 ;
-2 ; 2 ; 2919,20 ; 44349777172 ; 21 ; 1 ; 2020 ;
+{ (codigo): <3> ; (idVendedor): <1> ; (valorTotal): <120,00> ; (cpfCliente): <82203425016> ; (dia): <3> ; (mes): <11> ; (ano): <2020> ;}
+{ (codigo): <4> ; (idVendedor): <1> ; (valorTotal): <1,50> ; (cpfCliente): <82203425016> ; (dia): <3> ; (mes): <11> ; (ano): <2020> ;}
+{ (codigo): <5> ; (idVendedor): <1> ; (valorTotal): <150,00> ; (cpfCliente): <82203425016> ; (dia): <3> ; (mes): <11> ; (ano): <2020> ;}
+{ (codigo): <6> ; (idVendedor): <1> ; (valorTotal): <1,50> ; (cpfCliente): <82203425016> ; (dia): <3> ; (mes): <11> ; (ano): <2020> ;}
+{ (codigo): <7> ; (idVendedor): <1> ; (valorTotal): <120,00> ; (cpfCliente): <82203425016> ; (dia): <3> ; (mes): <11> ; (ano): <2020> ;}
+{ (codigo): <8> ; (idVendedor): <1> ; (valorTotal): <120,00> ; (cpfCliente): <03463177110> ; (dia): <3> ; (mes): <11> ; (ano): <2020> ;}
+{ (codigo): <11> ; (idVendedor): <1> ; (valorTotal): <1,50> ; (cpfCliente): <03463177110> ; (dia): <3> ; (mes): <11> ; (ano): <2020> ;}
+{ (codigo): <12> ; (idVendedor): <1> ; (valorTotal): <3,00> ; (cpfCliente): <03463177110> ; (dia): <3> ; (mes): <11> ; (ano): <2020> ;}
+{ (codigo): <13> ; (idVendedor): <1> ; (valorTotal): <1080,00> ; (cpfCliente): <03463177110> ; (dia): <3> ; (mes): <11> ; (ano): <2020> ;}
+{ (codigo): <14> ; (idVendedor): <1> ; (valorTotal): <145,00> ; (cpfCliente): <03813903141> ; (dia): <3> ; (mes): <11> ; (ano): <2020> ;}

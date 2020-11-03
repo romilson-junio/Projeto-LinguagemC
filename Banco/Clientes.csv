@@ -1,3 +1,8 @@
-87633433396 ; Laura ;
-03463177110 ; Vagner ;
-44349777172 ; Romilson ;
+{ (cpf): <87633433396> ; (nome): <Laura> ; }
+{ (cpf): <03463177110> ; (nome): <Vagner> ; }
+{ (cpf): <44349777172> ; (nome): <Romilson> ; }
+{ (cpf): <03813903141> ; (nome): <Teste Cadastor Cliente> ; }
+{ (cpf): <82203425017> ; (nome): <Teste> ; }
+{ (cpf): <82203425018> ; (nome): <Teste 2> ; }
+{ (cpf): <82203425019> ; (nome): <teste> ; }
+{ (cpf): <82203425016> ; (nome): <teste> ; }

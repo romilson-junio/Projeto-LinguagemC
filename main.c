@@ -16,10 +16,13 @@
 #include "VIEW/Menu.h"
 #include "Servicos/Servicos.h"
 #include "Servicos/Alfabeto.h"
-
+#include "Servicos/Data.h"
+float receberValorFloat();
 int main(){
 
     int i = 1;
+
+
     setlocale(LC_ALL, "Portuguese");
     do{
         if(!isLogado()) {
@@ -28,5 +31,6 @@ int main(){
         menu();
     } while(i < 3);
     return 0;
+
 }
 

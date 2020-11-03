@@ -61,8 +61,7 @@ void USUARIOS_novoUsuario(){
     id = quantidadeUsuarios+1;
     system("cls");
     fflush(stdin);
-    printf("             INFORME O USUARIO: \n");
-    printf("             ");
+    printf("INFORME O USUARIO: \n");
     gets(usuario);
     fflush(stdin);
 
@@ -73,15 +72,13 @@ void USUARIOS_novoUsuario(){
         }
     }
     system("cls");
-    printf("             INFORME O NOME: \n");
-    printf("             ");
+    printf("INFORME O NOME: \n");
     gets(nome);
     fflush(stdin);
     system("cls");
     do{
         system("cls");
-        printf("             INFORME O CPF DO USUÁRIO\n");
-        printf("             ");
+        printf("INFORME O CPF DO USUÁRIO\n");
         scanf("%s", &cpf);
         fflush(stdin);
         valido = SERVICOS_validarCPF(cpf);
@@ -93,12 +90,11 @@ void USUARIOS_novoUsuario(){
     }
     system("cls");
     do{
-        printf("\n             SELECIONE O PERFIL\n");
-        printf("             [ 1 ] GERENTE\n");
-        printf("             [ 2 ] VENDEDOR\n");
-        printf("             [ 3 ] ADMINISTRADOR\n");
-        printf("             [ 4 ] ESTOQUISTA\n");
-        printf("             ");
+        printf("SELECIONE O PERFIL\n");
+        printf(" [ 1 ] GERENTE\n");
+        printf(" [ 2 ] VENDEDOR\n");
+        printf(" [ 3 ] ADMINISTRADOR\n");
+        printf(" [ 4 ] ESTOQUISTA\n");
         receberValorInt(&op);
         if(op != 1 && op != 2 && op != 3 && op != 4){
             system("cls");
@@ -120,36 +116,34 @@ void USUARIOS_novoUsuario(){
     }
     SERVICOS_criptografar(senha);
     system("cls");
-    tituloTabela("DADOS DO USUARIO");
-    printf("\n\n");
-    printf("           #####################   ************************                            #####################   *****************************\n");
-    printf("           ##                 ##   **                    **                            ##                 ##   **                         **\n");
-    printf("           ##     USUÁRIO     ##   **   %s ", usuario);
-    for(i = strlen(usuario); i < 16 ; i++){
+    tituloTabela("DADOS DO NOVO USUARIO");
+    printf("           #####################   ########################\n");
+    printf("           ##                 ##   ##                    ##\n");
+    printf("           ##     USUÁRIO     ##   ##   %s ", usuario);
+    for(i = strlen(usuario); i < 18 ; i++){
         printf(" ");
     }
-    printf("**                            ##     CPF         ##   **   %s ",SERVICOS_formatCpf(cpf));
-    for(i = strlen(cpf); i < 21;i++){
+    printf("##\n");
+    printf("           ##                 ##   ##                    ##\n");
+    printf("           #####################   ########################\n");
+    printf("           #####################   ##################################\n");
+    printf("           ##                 ##   ##                              ##\n");
+    printf("           ##     NOME        ##   ##   %s ", nome);
+    for(i = strlen(nome); i < 28;i++){
         printf(" ");
     }
-    printf("**\n");
-    printf("           ##                 ##   **                    **                            ##                 ##   **                         **\n");
-    printf("           #####################   ************************                            #####################   *****************************\n\n\n");
-    printf("           #################   **********************************************************   #####################   ************************\n");
-    printf("           ##             ##   **                                                      **   ##                 ##   **                    **\n");
-    printf("           ##     NOME    ##   **   %s ", nome);
-    for(i = strlen(nome); i < 50;i++){
+    printf("##\n");
+    printf("           ##                 ##   ##                              ##\n");
+    printf("           #####################   ##################################\n");
+    printf("           #####################   ########################\n");
+    printf("           ##                 ##   ##                    ##\n");
+    printf("           ##     PERFIL      ##   ##   %s ", perfil);
+    for(i = strlen(perfil); i < 18 ; i++){
         printf(" ");
     }
-    printf("**   ##     PERFIL      ##   **   %s ", perfil);
-    for(i = strlen(perfil); i < 16 ; i++){
-        printf(" ");
-    }
-    printf("**\n");
-    printf("           ##             ##   **                                                      **   ##                 ##   **                    **\n");
-    printf("           #################   **********************************************************   #####################   ************************\n");
-
-
+    printf("##\n");
+    printf("           ##                 ##   ##                    ##\n");
+    printf("           #####################   ########################\n");
     int msgboxID = MessageBox(NULL, "CONFIRMAR CADASTRO", "CADASTRO DE USUARIO", MB_YESNO | MB_DEFBUTTON1);
         switch(msgboxID){
             case IDYES:
@@ -161,10 +155,7 @@ void USUARIOS_novoUsuario(){
         }
     if(op == 1){
         USUARIOS = fopen("Banco/Usuario.csv", "a");
-
-            fprintf(USUARIOS,
-                    "{ (id): <%d> ; (nome): <%s> 	; (usuario): <%s>		; (senha): <%s> ; (perfil): <%s> ;\n}",
-                    id, nome, usuario ,senha , perfil);
+            fprintf(USUARIOS,"%d ; %s ; %s ; %s ; %s ;\n", id, nome, usuario ,senha , perfil);
             MessageBox(0,"USUARIO CADASTRADO COM SUCESSO!\n", "CADASTRO DE USUÁRIOS",0);
         fclose(USUARIOS);
     } else {

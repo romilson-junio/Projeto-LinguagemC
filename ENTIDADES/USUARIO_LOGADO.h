@@ -17,66 +17,124 @@ struct USUARIO_LOGADO{
 };
 
 struct USUARIO_LOGADO Usuario[1];
+bool USUARIO_LOGADO_validarUsuario(char *usuario, char *senha){
+    char idFile[10], nomeFile[100] = " ", usuarioFile[50] = " ", senhaFile[20] = " ", perfilFile[50] = " ";
+    int i,j, n, ultima;
+    bool dado = false, var  = false, fim;
+    char variavel[15];
+    char dados[1000];
+    SERVICOS_criptografar(senha);
+    FILE *USUARIOS;
 
+    USUARIOS = fopen("Banco/Usuario.csv", "r");
+    while((fgets(dados, sizeof(dados), USUARIOS))!=NULL){
+        fim = false;
+        strcpy(idFile, "0");
+
+
+        for(i = 0; i < 1000; i++){
+            switch(dados[i]){
+                case '<': n=0; dado = true; continue; break;
+                case '>': dado = false; continue; break;
+                case '(': j = 0; var = true; continue; break;
+                case ')': variavel[j] = '\000'; var = false; continue; break;
+                case '}': fim = true; break;
+            }
+
+            if(var && !fim){variavel[j] = dados[i]; j++;
+            } else if(dado && !fim){
+                     if(strcmp(variavel, "id")     == 0){ idFile[n] = dados[i];}
+                else if(strcmp(variavel, "nome") == 0){ nomeFile[n] = dados[i]; }
+                else if(strcmp(variavel, "senha") == 0){ senhaFile[n] = dados[i]; }
+                else if(strcmp(variavel, "usuario") == 0){ usuarioFile[n] = dados[i]; }
+                else if(strcmp(variavel, "perfil") == 0){ perfilFile[n] = dados[i]; }
+                n++;
+            }
+        }
+        if(strcmp(usuario, usuarioFile) == 0 && strcmp(senha, senhaFile) == 0){
+            strcpy(Usuario[0].nomeLogado, nomeFile);
+            strcpy(Usuario[0].senhaLogado, senhaFile);
+            strcpy(Usuario[0].usuarioLogado, usuarioFile);
+            strcpy(Usuario[0].perfilLogado, perfilFile);
+            Usuario[0].idLogado = atoi(idFile);
+            Usuario[0].isLogado = true;
+            return true;
+        } else{
+            memset(nomeFile, '\000', strlen(nomeFile) * sizeof(char));
+            memset(senhaFile, '\000', strlen(senhaFile) * sizeof(char));
+            memset(usuarioFile, '\000', strlen(usuarioFile) * sizeof(char));
+            memset(perfilFile, '\000', strlen(perfilFile) * sizeof(char));
+
+        }
+
+    }
+    Usuario[0].isLogado = false;
+    return false;
+}
 void USUARIO_LOGADO_login(){
     FILE *USUARIOS;
     int i,j,op, tam=0;
-    bool userInvalid;
+    bool userValid;
     char enter;
-    char usuario[100] = " ", senha[20] = " ";
-    char usuarioFile[100], senhaFile[20], nomeFile[100], perfilFile[50];
-    int idFile;
-    userInvalid = false;
-    while(op != 1 || userInvalid){
+    char usuario[100] = " ", senha[20] = "";
+    userValid = false;
+    while(op == 2 || !userValid){
         if(op == 2){
-            strcpy(usuario, " ");
-            strcpy(senha, " ");
+            fflush(stdin);
+            memset(usuario, '\000', strlen(usuario) * sizeof(char));
+            memset(senha, '\000', strlen(senha) * sizeof(char));
+            tam = 0;
         }
-        if(userInvalid){
-            strcpy(usuario, " ");
-            strcpy(senha, " ");
-            MessageBox(0,"USUÁRIO OU SENHA INVÁLIDOS!\n", "LOGIN",0);
-        }
-
         for(i = 0; i < 3; i++){
             system("cls");
-            printf("\n\n\n\n\n\n\n\n\n\n\n");
-            printf("                                                             *******************************************************\n");
-            printf("                                                             *******************************************************\n");
-            printf("                                                             *******************************************************\n");
-            printf("                                                             ******** USUÁRIO **************************************\n");
-            printf("                                                             ********                                       ********\n");
-            printf("                                                             ******** %s", usuario);
-            for(j = strlen(usuario); j < 38; j++){
+            printf("\n\n\n\n\n\n\n\n\n");
+            printf("                                        ########################################################################################################\n");
+            printf("                                      ##########################################################################################################\n");
+            printf("                                    ############################################################################################################\n");
+            printf("                                  ###############################################################                                          #####\n");
+            printf("                                #################################################################     ..............    ..............     #####\n");
+            printf("                              ###################################################################     ..............    ..............     #####\n");
+            printf("                            #####################################################################     ..............    ..............     #####\n");
+            printf("                            ############               ##                         ###############     ......                ......         #####\n");
+            printf("                            ############     USUÁRIO   ##   %s", usuario);
+
+            for(j = strlen(usuario); j < 22; j++){
                 printf(" ");
             }
-            printf("********\n");
-            printf("                                                             *******************************************************\n");
-            printf("                                                             ******** SENHA   **************************************\n");
-            printf("                                                             ********                                       ********\n");
-            printf("                                                             ******** ");
-            if(strlen(senha) <= 1){
-                printf(" ");
-            } else {
+                                                                                              printf("###############     ......                ......         #####\n");
+            printf("                            ############               ##                         ###############     ......                ......         #####\n");
+            printf("                            #####################################################################     ..............        ......         #####\n");
+            printf("                            #####################################################################     ..............        ......         #####\n");
+            printf("                            #####################################################################             ......        ......         #####\n");
+            printf("                            ############               ##                         ###############             ......        ......         #####\n");
+            printf("                            ############    SENHA      ##   ");
+            if(strlen(senha) > 1){
                 for(j = 0; j < strlen(senha); j++){
                     printf("*");
                 }
             }
-            for(j = strlen(senha); j < 38; j++){
+            for(j = strlen(senha); j < 22; j++){
                 printf(" ");
             }
-            printf("********\n");
-            printf("                                                             *******************************************************\n");
-            printf("                                                             *******************************************************\n");
-            printf("                                                             *******************************************************\n");
+                                                                                              printf("###############             ......        ......         #####\n");
+            printf("                            ############               ##                         ###############     ..............        ......         #####\n");
+            printf("                            #####################################################################     ..............        ......         #####\n");
+            printf("                              ###################################################################     ..............        ......         #####\n");
+            printf("                                #################################################################                                          #####\n");
+            printf("                                  ###############################################################                                          #####\n");
+            printf("                                    ############################################################################################################\n");
+            printf("                                      ##########################################################################################################\n");
+            printf("                                        ########################################################################################################\n");
+
 
             if(i == 0){
-                printf("\n\n\n                                                             DIGITE SEU USUÁRIO:    ");
+
+                printf("\n\n                                          DIGITE SEU USUÁRIO:  ");
                 scanf("%s", &usuario);
 
             } else if(i == 1){
 
-                printf("\n\n\n                                                             DIGITE SUA SENHA:   ");
+                printf("\n\n                                         DIGITE SUA SENHA: ");
                 do{
                      senha[tam] = getch();
                      if(senha[tam] == 0x08 && tam > 0){ /*Backspace*/
@@ -91,7 +149,6 @@ void USUARIO_LOGADO_login(){
                         tam++;
                      }
                 }while(tam < 8) ;
-
             } else {
                 int msgboxID = MessageBox(NULL, "ENTRAR", "CONFIRMAR LOGIN", MB_YESNO | MB_DEFBUTTON1);
 				switch(msgboxID){
@@ -106,24 +163,16 @@ void USUARIO_LOGADO_login(){
 
         }
         if(op == 1){
-            USUARIOS = fopen("Banco/Usuario.csv", "r");
-            SERVICOS_criptografar(senha);
-            while(fscanf(USUARIOS,"%d ; %s ; %s ; %s ; %s ;\n", &idFile, &nomeFile, &usuarioFile ,&senhaFile, &perfilFile) != EOF){
-                if(strcmp(usuario, usuarioFile) == 0 && strcmp(senha, senhaFile) == 0){
-                    strcpy(Usuario[0].usuarioLogado, usuarioFile);
-                    strcpy(Usuario[0].senhaLogado, senhaFile);
-                    strcpy(Usuario[0].nomeLogado, nomeFile);
-                    strcpy(Usuario[0].perfilLogado, perfilFile);
-                    Usuario[0].idLogado = idFile;
-                    Usuario[0].isLogado = true;
-                    userInvalid = false;
-                    return 1;
-                } else {
-                    Usuario[0].isLogado = false;
-                    userInvalid = true;
-                }
+            userValid = USUARIO_LOGADO_validarUsuario(usuario, senha);
+            if(userValid){
+                return 1;
+            } else {
+                fflush(stdin);
+                memset(usuario, '\000', strlen(usuario) * sizeof(char));
+                memset(senha, '\000', strlen(senha) * sizeof(char));
+                tam = 0;
+                MessageBox(0,"USUÁRIO OU SENHA INVÁLIDOS!\n", "LOGIN",0);
             }
-            fclose(USUARIOS);
         }
         system("cls");
 
@@ -142,6 +191,9 @@ char* getPerfilLogado(){
 
 void USUARIO_LOGADO_sair(){
     Usuario[0].isLogado = false;
+}
+char* getSenhaLogado(){
+    return Usuario[0].senhaLogado;
 }
 int getIdLogado(){
     return Usuario[0].idLogado;

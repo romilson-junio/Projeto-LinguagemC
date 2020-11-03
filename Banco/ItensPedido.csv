@@ -1,7 +1,12 @@
-1 ; 1 ; 1 ; 1 ; 20,200001 ;
-2 ; 1 ; 2 ; 1 ; 30,200001 ;
-3 ; 1 ; 3 ; 1 ; 1500,000000 ;
-4 ; 1 ; 7 ; 2 ; 250,000000 ;
-5 ; 2 ; 6 ; 5 ; 30,200001 ;
-6 ; 2 ; 7 ; 11 ; 250,000000 ;
-7 ; 2 ; 1 ; 1 ; 20,200001 ;
+{ (idItem): <4> ; (idPedido): <3> ; (idProduto): <4> ; (nomeProduto): <Monitor> 	; (quantidade): <1> ; (valorProduto): <120,00> ; }
+{ (idItem): <5> ; (idPedido): <4> ; (idProduto): <17> ; (nomeProduto): <Caneta> 	; (quantidade): <1> ; (valorProduto): <1,50> ; }
+{ (idItem): <6> ; (idPedido): <5> ; (idProduto): <12> ; (nomeProduto): <Cabo USB> 	; (quantidade): <1> ; (valorProduto): <150,00> ; }
+{ (idItem): <7> ; (idPedido): <6> ; (idProduto): <17> ; (nomeProduto): <Caneta> 	; (quantidade): <1> ; (valorProduto): <1,50> ; }
+{ (idItem): <8> ; (idPedido): <7> ; (idProduto): <4> ; (nomeProduto): <Monitor> 	; (quantidade): <1> ; (valorProduto): <120,00> ; }
+{ (idItem): <9> ; (idPedido): <8> ; (idProduto): <4> ; (nomeProduto): <Monitor> 	; (quantidade): <1> ; (valorProduto): <120,00> ; }
+{ (idItem): <12> ; (idPedido): <11> ; (idProduto): <17> ; (nomeProduto): <Caneta> 	; (quantidade): <1> ; (valorProduto): <1,50> ; }
+{ (idItem): <13> ; (idPedido): <12> ; (idProduto): <17> ; (nomeProduto): <Caneta> 	; (quantidade): <1> ; (valorProduto): <1,50> ; }
+{ (idItem): <14> ; (idPedido): <13> ; (idProduto): <18> ; (nomeProduto): <SSD> 	; (quantidade): <3> ; (valorProduto): <350,00> ; }
+{ (idItem): <15> ; (idPedido): <13> ; (idProduto): <3> ; (nomeProduto): <Fone> 	; (quantidade): <3> ; (valorProduto): <10,00> ; }
+{ (idItem): <14> ; (idPedido): <14> ; (idProduto): <21> ; (nomeProduto): <Fonte> 	; (quantidade): <2> ; (valorProduto): <55,00> ; }
+{ (idItem): <15> ; (idPedido): <14> ; (idProduto): <20> ; (nomeProduto): <Gabinete> 	; (quantidade): <1> ; (valorProduto): <35,00> ; }

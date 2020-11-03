@@ -5,16 +5,19 @@
 void menu(){
     int op;
     system("cls");
+    int res;
     if(strcmp(getPerfilLogado(), "Gerente") == 0){
 
         verificarEstoque();
 
-        subMenuProdutos(1);
-        subMenuPedidos(2);
-        subMenuClientes(3);
-        subMenuSair(0);
+        subMenu("Produtos",1);
+        subMenu("Pedidos",2);
+        subMenu("Clientes",3);
+        subMenu("Sair",0);
 
-        scanf("%d", &op);
+        printf("\n                                 SELECIONE A OPÇÃO\n");
+        printf("                                 ");
+        receberValorInt(&op);
 
         switch(op){
             case 0:
@@ -35,12 +38,14 @@ void menu(){
 
     } else if(strcmp(getPerfilLogado(), "Vendedor") == 0){
 
-        subMenuProdutos(1);
-        subMenuPedidos(2);
-        subMenuClientes(3);
-        subMenuSair(0);
+        subMenu("Produtos",1);
+        subMenu("Pedidos",2);
+        subMenu("Clientes",3);
+        subMenu("Sair",0);
 
-        scanf("%d", &op);
+        printf("\n                                 SELECIONE A OPÇÃO\n");
+        printf("                                 ");
+        receberValorInt(&op);
         switch(op){
             case 0:
                 USUARIO_LOGADO_sair();
@@ -57,10 +62,12 @@ void menu(){
 
         verificarEstoque();
 
-        subMenuProdutos(1);
-        subMenuSair(0);
+        subMenu("Produtos",1);
+        subMenu("Sair",0);
 
-        scanf("%d", &op);
+        printf("\n                                 SELECIONE A OPÇÃO\n");
+        printf("                                 ");
+        receberValorInt(&op);
         switch(op){
             case 0:
                 USUARIO_LOGADO_sair();
@@ -72,11 +79,12 @@ void menu(){
         }
 
     } else if(strcmp(getPerfilLogado(), "Administrador") == 0){
+        subMenu("USUÁRIOS",1);
+        subMenu("SAIR",0);
+        printf("\n                                 SELECIONE A OPÇÃO\n");
+        printf("                                 ");
+        receberValorInt(&op);
 
-        subMenuUsuarios(1);
-        subMenuSair(0);
-
-        scanf("%d", &op);
         switch(op){
             case 0:
                 USUARIO_LOGADO_sair();
@@ -106,8 +114,9 @@ void verificarEstoque(){
             PRODUTOS_baixoEstoque();
         }
 }
-void subMenuPedidos(opcao){
-    int k,j;
+
+subMenu(char titulo[], int opcao){
+    int k,j,i;
     for(j = 1; j < 7; j++){
         espaco();
         espaco();
@@ -115,111 +124,94 @@ void subMenuPedidos(opcao){
         espaco();
         numberOption(opcao, j);
         separador(j);
-        letraP(j);
-        letraE(j);
-        letraD(j);
-        letraI(j);
-        letraD(j);
-        letraO(j);
-        letraS(j);
+        for(i=0; i < strlen(titulo);i++ ){
+
+            switch(tolower(titulo[i])){
+                case 'a':
+                    letraA(j);
+                break;
+                case 'b':
+                    letraB(j);
+                break;
+                case 'c':
+                    letraC(j);
+                break;
+                case 'd':
+                    letraD(j);
+                break;
+                case 'e':
+                    letraE(j);
+                break;
+                case 'f':
+                    letraF(j);
+                break;
+                case 'g':
+                    letraG(j);
+                break;
+                case 'h':
+                    letraH(j);
+                break;
+                case 'i':
+                    letraI(j);
+                break;
+                case 'j':
+                    letraJ(j);
+                break;
+                case 'k':
+                    letraK(j);
+                break;
+                case 'l':
+                    letraL(j);
+                break;
+                case 'm':
+                    letraM(j);
+                break;
+                case 'n':
+                    letraN(j);
+                break;
+                case 'o':
+                    letraO(j);
+                break;
+                case 'p':
+                    letraP(j);
+                break;
+                case 'q':
+                    letraQ(j);
+                break;
+                case 'r':
+                    letraR(j);
+                break;
+                case 's':
+                    letraS(j);
+                break;
+                case 't':
+                    letraT(j);
+                break;
+                case 'u':
+                    letraU(j);
+                break;
+                case 'v':
+                    letraV(j);
+                break;
+                case 'x':
+                    letraX(j);
+                break;
+                case 'w':
+                    letraW(j);
+                break;
+                case 'y':
+                    letraY(j);
+                break;
+                case 'z':
+                    letraZ(j);
+                break;
+            }
+        }
+
         printf("\n");
     }
-}
-void subMenuEncerrar(opcao){
-    int j;
-    espaco();
-    espaco();
-    espaco();
-    espaco();
-    numberOption(opcao, j);
-    separador(j);
-    letraE(j);
-    letraN(j);
-    letraC(j);
-    letraE(j);
-    letraR(j);
-    letraR(j);
-    letraA(j);
-    letraR(j);
-    printf("\n");
 }
 
-subMenuProdutos(opcao){
-    int k,j;
-    for(j = 1; j < 7; j++){
-        espaco();
-        espaco();
-        espaco();
-        espaco();
-        numberOption(opcao, j);
-        separador(j);
-        letraP(j);
-        letraR(j);
-        letraO(j);
-        letraD(j);
-        letraU(j);
-        letraT(j);
-        letraO(j);
-        letraS(j);
-        printf("\n");
-    }
-}
-subMenuClientes(opcao){
-    int k,j;
-    for(j = 1; j < 7; j++){
-        espaco();
-        espaco();
-        espaco();
-        espaco();
-        numberOption(opcao, j);
-        separador(j);
-        letraC(j);
-        letraL(j);
-        letraI(j);
-        letraE(j);
-        letraN(j);
-        letraT(j);
-        letraE(j);
-        letraS(j);
-        printf("\n");
-    }
-}
-subMenuUsuarios(opcao){
-    int k,j;
-    for(j = 1; j < 7; j++){
-        espaco();
-        espaco();
-        espaco();
-        espaco();
-        numberOption(opcao, j);
-        separador(j);
-        letraU(j);
-        letraS(j);
-        letraU(j);
-        letraA(j);
-        letraR(j);
-        letraI(j);
-        letraO(j);
-        letraS(j);
-        printf("\n");
-    }
-}
-subMenuSair(opcao){
-    int k,j;
-    for(j = 1; j < 7; j++){
-        espaco();
-        espaco();
-        espaco();
-        espaco();
-        numberOption(opcao, j);
-        separador(j);
-        letraS(j);
-        letraA(j);
-        letraI(j);
-        letraR(j);
-        printf("\n");
-    }
-}
 void numberOption(opcao, j){
     switch(opcao){
         case 1:
@@ -254,5 +246,103 @@ void numberOption(opcao, j){
         break;
     }
 }
+tituloTabela(char titulo[]){
+    int k,j,i;
+    for(j = 1; j < 7; j++){
+        espaco();
+        espaco();
+        espaco();
+        espaco();
+        for(i=0; i < strlen(titulo);i++ ){
+
+            switch(tolower(titulo[i])){
+                case 'a':
+                    letraA(j);
+                break;
+                case 'b':
+                    letraB(j);
+                break;
+                case 'c':
+                    letraC(j);
+                break;
+                case 'd':
+                    letraD(j);
+                break;
+                case 'e':
+                    letraE(j);
+                break;
+                case 'f':
+                    letraF(j);
+                break;
+                case 'g':
+                    letraG(j);
+                break;
+                case 'h':
+                    letraH(j);
+                break;
+                case 'i':
+                    letraI(j);
+                break;
+                case 'j':
+                    letraJ(j);
+                break;
+                case 'k':
+                    letraK(j);
+                break;
+                case 'l':
+                    letraL(j);
+                break;
+                case 'm':
+                    letraM(j);
+                break;
+                case 'n':
+                    letraN(j);
+                break;
+                case 'o':
+                    letraO(j);
+                break;
+                case 'p':
+                    letraP(j);
+                break;
+                case 'q':
+                    letraQ(j);
+                break;
+                case 'r':
+                    letraR(j);
+                break;
+                case 's':
+                    letraS(j);
+                break;
+                case 't':
+                    letraT(j);
+                break;
+                case 'u':
+                    letraU(j);
+                break;
+                case 'v':
+                    letraV(j);
+                break;
+                case 'x':
+                    letraX(j);
+                break;
+                case 'w':
+                    letraW(j);
+                break;
+                case 'y':
+                    letraY(j);
+                break;
+                case 'z':
+                    letraZ(j);
+                break;
+                case ' ':
+                    espaco();
+                break;
+            }
+        }
+
+        printf("\n");
+    }
+}
+
 
 #endif // MENU_H_INCLUDED
