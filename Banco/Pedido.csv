@@ -7,4 +7,4 @@
 { (codigo): <11> ; (idVendedor): <1> ; (valorTotal): <1,50> ; (cpfCliente): <03463177110> ; (dia): <3> ; (mes): <11> ; (ano): <2020> ;}
 { (codigo): <12> ; (idVendedor): <1> ; (valorTotal): <3,00> ; (cpfCliente): <03463177110> ; (dia): <3> ; (mes): <11> ; (ano): <2020> ;}
 { (codigo): <13> ; (idVendedor): <1> ; (valorTotal): <1080,00> ; (cpfCliente): <03463177110> ; (dia): <3> ; (mes): <11> ; (ano): <2020> ;}
-{ (codigo): <14> ; (idVendedor): <1> ; (valorTotal): <145,00> ; (cpfCliente): <03813903141> ; (dia): <3> ; (mes): <11> ; (ano): <2020> ;}
+{ (codigo): <14> ; (idVendedor): <2> ; (valorTotal): <55,00> ; (cpfCliente): <03463177110> ; (dia): <5> ; (mes): <11> ; (ano): <2020> ;}

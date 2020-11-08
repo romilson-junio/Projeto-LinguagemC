@@ -8,5 +8,4 @@
 { (idItem): <13> ; (idPedido): <12> ; (idProduto): <17> ; (nomeProduto): <Caneta> 	; (quantidade): <1> ; (valorProduto): <1,50> ; }
 { (idItem): <14> ; (idPedido): <13> ; (idProduto): <18> ; (nomeProduto): <SSD> 	; (quantidade): <3> ; (valorProduto): <350,00> ; }
 { (idItem): <15> ; (idPedido): <13> ; (idProduto): <3> ; (nomeProduto): <Fone> 	; (quantidade): <3> ; (valorProduto): <10,00> ; }
-{ (idItem): <14> ; (idPedido): <14> ; (idProduto): <21> ; (nomeProduto): <Fonte> 	; (quantidade): <2> ; (valorProduto): <55,00> ; }
-{ (idItem): <15> ; (idPedido): <14> ; (idProduto): <20> ; (nomeProduto): <Gabinete> 	; (quantidade): <1> ; (valorProduto): <35,00> ; }
+{ (idItem): <11> ; (idPedido): <14> ; (idProduto): <21> ; (nomeProduto): <Fonte 50W> 	; (quantidade): <1> ; (valorProduto): <55,00> ; }
