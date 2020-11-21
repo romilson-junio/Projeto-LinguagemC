@@ -410,11 +410,8 @@ void PRODUTOS_excluir(){
             break;
         }
     if(op == 1){
-        printf("             CONFIRME SUA SENHA: \n");
-        printf("             ");
-        fflush(stdin);
-        gets(senha);
-        fflush(stdin);
+        printf("             CONFIRME SUA SENHA: \n             ");
+        SERVICOS_receberSenha(&senha);
         SERVICOS_criptografar(senha);
         if(strcmp(getSenhaLogado(), senha)==0){
             if(PRODUTOS_SELECT_CODIGO_FROM_PRODUTOS_WHERE_CODIGO(codigo) == 1){
@@ -557,7 +554,6 @@ void PRODUTOS_retirarDoEstoque(int quantidade, int idProduto){
     }
     PRODUTOS = fopen("Banco/Produto.csv", "w");
     for(i = 0; i < quantidadeProdutos; i++){
-
         fprintf(PRODUTOS,
                 "{ (codigo): <%d> ; (nome): <%s> ; (quantidade): <%d> ; (valor): <%.2f> ; (margemLucro): <%.2f> ; (usuarioCadastrante): <%d> ; }\n",
                 Produtos[i].codigo, Produtos[i].nome, Produtos[i].quantidade, Produtos[i].valor, Produtos[i].margemLucro, Produtos[i].usuarioCadastrante);
@@ -577,6 +573,7 @@ void PRODUTOS_retornarDoEstoque(int quantidade, int idProduto){
     }
     PRODUTOS = fopen("Banco/Produto.csv", "w");
     for(i = 0; i < quantidadeProdutos; i++){
+
         fprintf(PRODUTOS,
                 "{ (codigo): <%d> ; (nome): <%s> ; (quantidade): <%d> ; (valor): <%.2f> ; (margemLucro): <%.2f> ; (usuarioCadastrante): <%d> ; }\n",
                 Produtos[i].codigo, Produtos[i].nome, Produtos[i].quantidade, Produtos[i].valor, Produtos[i].margemLucro, Produtos[i].usuarioCadastrante);

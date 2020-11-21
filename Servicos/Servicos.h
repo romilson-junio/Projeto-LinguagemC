@@ -23,27 +23,33 @@ int SERVICOS_validarCPF(char* cpf){
         MessageBox(0,"CPF INVÁLIDO!\n", "CPF",0);
         return 0;
     } else {
-        if(strcmp(cpf, "00000000000") == 0 ||
-        strcmp(cpf, "11111111111") == 0 ||
-        strcmp(cpf, "22222222222") == 0 ||
-        strcmp(cpf, "33333333333") == 0 ||
-        strcmp(cpf, "44444444444") == 0 ||
-        strcmp(cpf, "55555555555") == 0 ||
-        strcmp(cpf, "66666666666") == 0 ||
-        strcmp(cpf, "77777777777") == 0 ||
-        strcmp(cpf, "88888888888") == 0 ||
-        strcmp(cpf, "99999999999") == 0){
+        for(i = 0; i < 15; i++){
+            if(cpf[i] != '.' && cpf[i] != '-'){
+                cpfValidar[j] = cpf[i];
+                j++;
+            }
+        }
+        strcpy(cpf, cpfValidar);
+        if(strlen(cpf) != 11){
+            MessageBox(0,"CPF INVÁLIDO!\n", "CPF",0);
+            return 0;
+        }
+
+        if( strcmp(cpf, "00000000000") == 0 ||
+            strcmp(cpf, "11111111111") == 0 ||
+            strcmp(cpf, "22222222222") == 0 ||
+            strcmp(cpf, "33333333333") == 0 ||
+            strcmp(cpf, "44444444444") == 0 ||
+            strcmp(cpf, "55555555555") == 0 ||
+            strcmp(cpf, "66666666666") == 0 ||
+            strcmp(cpf, "77777777777") == 0 ||
+            strcmp(cpf, "88888888888") == 0 ||
+            strcmp(cpf, "99999999999") == 0){
             MessageBox(0,"CPF INVÁLIDO!\n", "CPF",0);
             return 0;
 
        } else {
-           for(i = 0; i < 15; i++){
-                if(cpf[i] != '.' && cpf[i] != '-'){
-                    cpfValidar[j] = cpf[i];
-                    j++;
-                }
-           }
-            strcpy(cpf, cpfValidar);
+
            for(i = 0; i <= 11; i++){
                 digito[i] = cpfValidar[i] - '0';
            }
@@ -110,5 +116,22 @@ void SERVICOS_formatCpf(char* cpf){
         j++;
     }
     strcpy(cpf, cpfFormatado);
+}
+void SERVICOS_receberSenha(char* senha){
+    int tam = 0;
+    do{
+         senha[tam] = getch();
+         if(senha[tam] == 0x08 && tam > 0){ /*Backspace*/
+            printf("\b \b");
+            senha[tam] = 0x00;
+            tam--;
+         }else if (senha[tam] == 13){ /*Enter*/
+            senha[tam] = 0x00;
+            break;
+         }else if (senha[tam] != 0x08){
+            putchar('*');
+            tam++;
+         }
+    }while(tam < 8) ;
 }
 #endif // SERVICOS_H_INCLUDED

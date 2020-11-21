@@ -135,13 +135,15 @@ void USUARIO_LOGADO_login(){
             } else if(i == 1){
 
                 printf("\n\n                                         DIGITE SUA SENHA: ");
+                SERVICOS_receberSenha(&senha);
+                /*
                 do{
                      senha[tam] = getch();
-                     if(senha[tam] == 0x08 && tam > 0){ /*Backspace*/
+                     if(senha[tam] == 0x08 && tam > 0){
                         printf("\b \b");
                         senha[tam] = 0x00;
                         tam--;
-                     }else if (senha[tam] == 13){ /*Enter*/
+                     }else if (senha[tam] == 13){
                         senha[tam] = 0x00;
                         break;
                      }else if (senha[tam] != 0x08){
@@ -149,6 +151,7 @@ void USUARIO_LOGADO_login(){
                         tam++;
                      }
                 }while(tam < 8) ;
+                */
             } else {
                 int msgboxID = MessageBox(NULL, "ENTRAR", "CONFIRMAR LOGIN", MB_YESNO | MB_DEFBUTTON1);
 				switch(msgboxID){

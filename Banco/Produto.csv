@@ -1,17 +1,17 @@
-{ (codigo): <4> ; (nome): <Monitor> ; (quantidade): <951> ; (valor): <120,00> ; (margemLucro): <0,00> ; (usuarioCadastrante): <1> ; }
-{ (codigo): <5> ; (nome): <Tablet> ; (quantidade): <990> ; (valor): <500,00> ; (margemLucro): <0,00> ; (usuarioCadastrante): <1> ; }
-{ (codigo): <6> ; (nome): <Notebook> ; (quantidade): <148> ; (valor): <2500,00> ; (margemLucro): <0,00> ; (usuarioCadastrante): <1> ; }
-{ (codigo): <8> ; (nome): <Memoria RAM> ; (quantidade): <119> ; (valor): <180,00> ; (margemLucro): <0,00> ; (usuarioCadastrante): <1> ; }
-{ (codigo): <9> ; (nome): <Microfone> ; (quantidade): <146> ; (valor): <180,00> ; (margemLucro): <0,00> ; (usuarioCadastrante): <1> ; }
-{ (codigo): <10> ; (nome): <Mouse> ; (quantidade): <147> ; (valor): <20,00> ; (margemLucro): <0,00> ; (usuarioCadastrante): <1> ; }
-{ (codigo): <11> ; (nome): <Teclado> ; (quantidade): <158> ; (valor): <12,00> ; (margemLucro): <0,00> ; (usuarioCadastrante): <1> ; }
-{ (codigo): <12> ; (nome): <Cabo USB> ; (quantidade): <147> ; (valor): <150,00> ; (margemLucro): <0,00> ; (usuarioCadastrante): <1> ; }
-{ (codigo): <2> ; (nome): <Celular> ; (quantidade): <137> ; (valor): <1250,00> ; (margemLucro): <0,00> ; (usuarioCadastrante): <1> ; }
-{ (codigo): <3> ; (nome): <Fone> ; (quantidade): <111> ; (valor): <10,00> ; (margemLucro): <0,00> ; (usuarioCadastrante): <1> ; }
-{ (codigo): <15> ; (nome): <Cabo HDMI> ; (quantidade): <132> ; (valor): <100,00> ; (margemLucro): <0,00> ; (usuarioCadastrante): <1> ; }
-{ (codigo): <16> ; (nome): <HD> ; (quantidade): <164> ; (valor): <100,00> ; (margemLucro): <0,00> ; (usuarioCadastrante): <1> ; }
-{ (codigo): <17> ; (nome): <Hub USB> ; (quantidade): <1001> ; (valor): <35,00> ; (margemLucro): <0,00> ; (usuarioCadastrante): <1> ; }
-{ (codigo): <18> ; (nome): <SSD> ; (quantidade): <9741> ; (valor): <350,00> ; (margemLucro): <0,00> ; (usuarioCadastrante): <1> ; }
-{ (codigo): <19> ; (nome): <Estabilizador> ; (quantidade): <5041> ; (valor): <50,00> ; (margemLucro): <0,00> ; (usuarioCadastrante): <1> ; }
-{ (codigo): <20> ; (nome): <Gabinete> ; (quantidade): <4941> ; (valor): <35,00> ; (margemLucro): <0,00> ; (usuarioCadastrante): <1> ; }
-{ (codigo): <21> ; (nome): <Fonte 50W> ; (quantidade): <2> ; (valor): <55,00> ; (margemLucro): <0,00> ; (usuarioCadastrante): <1> ; }
+{ (codigo): <4> ; (nome): <Monitor> ; (quantidade): <1000> ; (valor): <120,00> ; (margemLucro): <12,00> ; (usuarioCadastrante): <1> ; }
+{ (codigo): <5> ; (nome): <Tablet> ; (quantidade): <980> ; (valor): <500,00> ; (margemLucro): <12,00> ; (usuarioCadastrante): <1> ; }
+{ (codigo): <6> ; (nome): <Notebook> ; (quantidade): <146> ; (valor): <2500,00> ; (margemLucro): <12,00> ; (usuarioCadastrante): <1> ; }
+{ (codigo): <8> ; (nome): <Memoria RAM> ; (quantidade): <119> ; (valor): <180,00> ; (margemLucro): <12,00> ; (usuarioCadastrante): <1> ; }
+{ (codigo): <9> ; (nome): <Microfone> ; (quantidade): <146> ; (valor): <180,00> ; (margemLucro): <12,00> ; (usuarioCadastrante): <1> ; }
+{ (codigo): <10> ; (nome): <Mouse> ; (quantidade): <147> ; (valor): <20,00> ; (margemLucro): <12,00> ; (usuarioCadastrante): <1> ; }
+{ (codigo): <11> ; (nome): <Teclado> ; (quantidade): <153> ; (valor): <12,00> ; (margemLucro): <12,00> ; (usuarioCadastrante): <1> ; }
+{ (codigo): <12> ; (nome): <Cabo USB> ; (quantidade): <145> ; (valor): <150,00> ; (margemLucro): <12,00> ; (usuarioCadastrante): <1> ; }
+{ (codigo): <2> ; (nome): <Celular> ; (quantidade): <132> ; (valor): <1250,00> ; (margemLucro): <12,00> ; (usuarioCadastrante): <1> ; }
+{ (codigo): <3> ; (nome): <Fone> ; (quantidade): <109> ; (valor): <10,00> ; (margemLucro): <12,00> ; (usuarioCadastrante): <1> ; }
+{ (codigo): <15> ; (nome): <Cabo HDMI> ; (quantidade): <129> ; (valor): <100,00> ; (margemLucro): <12,00> ; (usuarioCadastrante): <1> ; }
+{ (codigo): <16> ; (nome): <HD> ; (quantidade): <164> ; (valor): <100,00> ; (margemLucro): <12,00> ; (usuarioCadastrante): <1> ; }
+{ (codigo): <17> ; (nome): <Hub USB> ; (quantidade): <1001> ; (valor): <35,00> ; (margemLucro): <12,00> ; (usuarioCadastrante): <1> ; }
+{ (codigo): <18> ; (nome): <SSD> ; (quantidade): <9741> ; (valor): <350,00> ; (margemLucro): <12,00> ; (usuarioCadastrante): <1> ; }
+{ (codigo): <19> ; (nome): <Estabilizador> ; (quantidade): <5040> ; (valor): <50,00> ; (margemLucro): <12,00> ; (usuarioCadastrante): <1> ; }
+{ (codigo): <20> ; (nome): <Gabinete> ; (quantidade): <4935> ; (valor): <35,00> ; (margemLucro): <12,00> ; (usuarioCadastrante): <1> ; }
+{ (codigo): <21> ; (nome): <Fonte 50W> ; (quantidade): <51> ; (valor): <55,00> ; (margemLucro): <12,50> ; (usuarioCadastrante): <1> ; }

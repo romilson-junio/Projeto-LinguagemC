@@ -125,11 +125,8 @@ void PEDIDOS_excluir(int idPedido){
             break;
         }
     if(op == 1){
-        printf("             CONFIRME SUA SENHA: \n");
-        printf("             ");
-        fflush(stdin);
-        gets(senha);
-        fflush(stdin);
+        printf("             CONFIRME SUA SENHA: \n             ");
+        SERVICOS_receberSenha(&senha);
         SERVICOS_criptografar(senha);
         if(strcmp(getSenhaLogado(), senha)==0){
             FILE *ITENS;
@@ -160,8 +157,8 @@ void PEDIDOS_excluir(int idPedido){
 
     PEDIDOS_view();
 }
-void ITENS_PEDIDO_view(int idPedido){
-    float valorTotal, valor;
+void ITENS_PEDIDO_view(int idPedido, int tipo){
+    float valorTotal, valor,valorTotalPedido = 0;
     int i,j, op, idVendedor;
     char nome[255], usuario[100], cpf[20], cliente[155], data[15] = " ";
 
@@ -176,9 +173,9 @@ void ITENS_PEDIDO_view(int idPedido){
         getNomeCliente(cliente, cpf);
         getDataPedido(data, idPedido);
         printf("\n\n");
-        printf("             ######################   ##########################################   ###################################\n");
-        printf("             ##                  ##   ##                                      ##   ##                               ##\n");
-        printf("             ## CÓDIGO : %3d     ##   ##  VENDEDOR: %s",idPedido, usuario);
+        printf("                          ######################   ##########################################   ###################################\n");
+        printf("                          ##                  ##   ##                                      ##   ##                               ##\n");
+        printf("                          ## CÓDIGO : %3d     ##   ##  VENDEDOR: %s",idPedido, usuario);
         for(i = strlen(usuario); i < 26; i++){
             printf(" ");
         }
@@ -187,54 +184,62 @@ void ITENS_PEDIDO_view(int idPedido){
             printf(" ");
         }
         printf("##\n");
-        printf("             ##                  ##   ##                                      ##   ##                               ##\n");
-        printf("             ######################   ##########################################   ###################################\n");
+        printf("                          ##                  ##   ##                                      ##   ##                               ##\n");
+        printf("                          ######################   ##########################################   ###################################\n");
         printf("\n");
-        printf("             #################################  ######################################################################\n");
-        printf("             ##                             ##  ##                                                                  ##\n");
-        printf("             ##  TOTAL: R$ %7.2f          ##  ##  CLIENTE: %s" ,valor, cliente);
+        printf("                          #################################  ######################################################################\n");
+        printf("                          ##                             ##  ##                                                                  ##\n");
+        printf("                          ##  TOTAL: R$ %11.2f      ##  ##  CLIENTE: %s" ,valor, cliente);
         for(i = strlen(cliente); i < 55; i++){
             printf(" ");
         }
         printf("##\n");
-        printf("             ##                             ##  ##                                                                  ##\n");
-        printf("             #################################  ######################################################################\n");
+        printf("                          ##                             ##  ##                                                                  ##\n");
+        printf("                          #################################  ######################################################################\n");
 
 
         printf("\n");
-        printf("                       #######################################################################################\n");
-        printf("                       ##  PRODUTO                      #  QUANTIDADE  #      VALOR     #    VALOR TOTAL    ##\n");
-        printf("                       #######################################################################################\n");
+        printf("                                    #######################################################################################\n");
+        printf("                                    ##  PRODUTO                      #  QUANTIDADE  #      VALOR     #    VALOR TOTAL    ##\n");
+        printf("                                    #######################################################################################\n");
         for(i = 0; i <quantidadeItens; i++){
+
             if(idPedido == itens[i].idPedido){
                 valorTotal = itens[i].quantidade * itens[i].valor;
-                printf("                       ##  %s  ", itens[i].nomeProduto);
+                /*valorTotalPedido += valorTotal;*/
+                printf("                                    ##  %s  ", itens[i].nomeProduto);
                 for(j = strlen(itens[i].nomeProduto); j < 27; j++){
                     printf(" ");
                 }
                 printf("#     %3d      #  R$ %10.2f #  R$ %12.2f  ##\n",itens[i].quantidade,itens[i].valor, valorTotal);
             }
         }
-        printf("                       #######################################################################################\n");
+        printf("                                    ##_______________________________#______________#________________#___________________##\n");
+        printf("                                    ##                                                    TOTAL      #  R$ %12.2f  ##\n", valor);
+        printf("                                    #######################################################################################\n");
 
         printf("\n\n");
-        printf("             ####################   #######################\n");
-        printf("             ##                ##   ##                   ##\n");
-        printf("             ## [ 1 ] VOLTAR   ##   ##  [ 2 ] EXCLUIR    ##\n");
-        printf("             ##                ##   ##                   ##\n");
-        printf("             ####################   #######################\n");
-        printf("\n              ");
+        printf("                          ####################   #######################\n");
+        printf("                          ##                ##   ##                   ##\n");
+        printf("                          ## [ 1 ] VOLTAR   ##   ##  [ 2 ] EXCLUIR    ##\n");
+        printf("                          ##                ##   ##                   ##\n");
+        printf("                          ####################   #######################\n");
+        printf("\n                           ");
         receberValorInt(&op);
         switch(op){
             case 1:
-                PEDIDOS_view();
+                if(tipo == 1){
+                    PEDIDOS_view();
+                } else {
+                    PEDIDOS_viewPedidosCliente(cpf);
+                }
             break;
             case 2:
                 PEDIDOS_excluir(idPedido);
             break;
             default:
-                MessageBox(0,"OPÇÃO INVÁLIDA!\n", "PRODUTOS",0);
-                PEDIDOS_view();
+                MessageBox(0,"OPÇÃO INVÁLIDA!\n", "PEDIDOS",0);
+                ITENS_PEDIDO_view(idPedido, tipo);
         }
     } else {
         MessageBox(0,"PEDIDO NÃO ENCONTRADO!\n", "PEDIDOS",0);

@@ -4,7 +4,8 @@
 #define CODIGO "codigo"
 
 int quantidadePedidos;
-
+int tipoConsulta;
+char* cpfConsulta[15];
 struct PEDIDO{
     int codigo, idVendedor;
     float valorTotal;
@@ -122,9 +123,10 @@ void getDataPedido(char* data, int idPedido){
 void PEDIDOS_view(){
     int i,j;
     char nomeVendedor[100], nomeProduto[100], cpf[16], data[16] = " ";
+    tipoConsulta = 1;
     SELECT_ALL_FROM_PEDIDOS();
     system("cls");
-    tituloTabela("      Pedidos");
+    tituloTabela("  Pedidos");
     printf("\n\n");
     printf("             ###################################################################################################################\n");
     printf("             ##  CODIGO  #  VENDEDOR                              #  VALOR TOTAL      #    CPF CLIENTE   #        DATA        ##\n");
@@ -158,7 +160,48 @@ void PEDIDOS_view(){
     printf("             ###################################################################################################################");
     optionViewPedidos();
 }
+void PEDIDOS_viewPedidosCliente(char* cpfCliente){
+    int i,j;
+    char nomeVendedor[100], nomeProduto[100], cpf[16], data[16] = " ";
+    tipoConsulta = 2;
+    strcpy(cpfConsulta, cpfCliente);
 
+    SELECT_ALL_FROM_PEDIDOS();
+    system("cls");
+    tituloTabela("  Pedidos");
+    printf("\n\n");
+    printf("             ###################################################################################################################\n");
+    printf("             ##  CODIGO  #  VENDEDOR                              #  VALOR TOTAL      #    CPF CLIENTE   #        DATA        ##\n");
+    printf("             ###################################################################################################################\n");
+    for(i = 0; i <quantidadePedidos; i++){
+        if(strcmp(cpfCliente,Pedidos[i].cpfCliente )== 0){
+            memset(data, '\000', strlen(data) * sizeof(char));
+            printf("             ##  %3d     #", Pedidos[i].codigo);
+            strcpy(nomeVendedor, getNomeVendedor(Pedidos[i].idVendedor));
+            printf("  %s  ", nomeVendedor);
+            for(j = strlen(nomeVendedor); j < 36; j++){
+                printf(" ");
+            }
+            printf("#");
+            printf("  R$ %10.2f    #", Pedidos[i].valorTotal);
+            strcpy(cpf,Pedidos[i].cpfCliente);
+
+            printf("  %s", SERVICOS_formatCpf(cpf));
+            for(j = strlen(cpf); j < 16; j++){
+                printf(" ");
+            }
+
+            getDataPedido(data, Pedidos[i].codigo);
+            printf("#   %s", data);
+            for(j = strlen(data); j < 17; j++){
+                printf(" ");
+            }
+            printf("##\n");
+        }
+    }
+    printf("             ###################################################################################################################");
+    optionViewPedidos();
+}
 float PEDIDOS_consultarTotalPorCpf(char* cpf){
     int i;
     double valor = 0;
@@ -174,7 +217,7 @@ void PEDIDOS_add(){
     FILE *PEDIDOS;
     SELECT_ALL_FROM_PEDIDOS();
     int result ,codigo, idVendedor, idProduto, quantidade, valido;
-    float valor;
+    float valor,valorTotalPedido;
     bool desconto = false;
     float valorTotal, valorComprasRealizadas;
     char cpf[20], nomeProduto[100] = " ";
@@ -205,10 +248,13 @@ void PEDIDOS_add(){
         do{
             PRODUTOS_insert();
             if(itens != 0){
+                valorTotalPedido = 0;
                 for(j=0; j < itens;j++){
-
+                    valorTotalPedido += Carrinho[j].valor * Carrinho[j].quantidade;
                     PEDIDOS_tabelaCarrinho(j, Carrinho[j].idProduto, Carrinho[j].quantidade, &Carrinho[j].valor);
                 }
+                printf("                                     ##_______________________________________#________________#___________________##\n");
+                printf("                                     ##                                             TOTAL      #  R$ %11.2f   ##\n", valorTotalPedido);
                 printf("                                     ################################################################################\n");
             }
             printf("\n                                     INFORME O CÓDIGO DO PRODUTO                                          Carrinho %d: \n", carrinho);
@@ -247,14 +293,16 @@ void PEDIDOS_add(){
         valorTotal = valorTotal + (quantidade * valor);
         itens++;
     } while(novoProduto() == 1);
-
+    valorTotalPedido = 0;
     for(j=0; j < itens;j++){
-
+        valorTotalPedido += Carrinho[j].valor * Carrinho[j].quantidade;
         PEDIDOS_tabelaCarrinho(j, Carrinho[j].idProduto, Carrinho[j].quantidade, &Carrinho[j].valor);
 
     }
+    printf("                                     ##_______________________________________#________________#___________________##\n");
+    printf("                                     ##                                             TOTAL      #  R$ %11.2f   ##\n", valorTotalPedido);
     printf("                                     ################################################################################\n");
-    int msgboxID = MessageBox(NULL, "PEDIDO", "DESEJA CONFIRMAR O PEDIDO", MB_YESNO | MB_DEFBUTTON1);
+    int msgboxID = MessageBox(NULL, "DESEJA CONFIRMAR O PEDIDO", "PEDIDO", MB_YESNO | MB_DEFBUTTON1);
 
     switch(msgboxID){
         case IDYES:
@@ -268,7 +316,7 @@ void PEDIDOS_add(){
             for(i=0; i < itens;i++){
                 ITENS_PEDIDO_add(codigo , Carrinho[i].idProduto ,Carrinho[i].valor , Carrinho[i].quantidade);
             }
-            MessageBox(0,"PEDIDO CADASTRADO COM SUCESSO!\n", "PEDIDOS",0);
+            MessageBox(0, "PEDIDO CADASTRADO COM SUCESSO!\n", "PEDIDO",0);
             PEDIDOS_view();
         break;
         case IDNO:
@@ -346,6 +394,16 @@ void PEDIDOS_tabelaCarrinho(int j,int idProduto, int qtd, float *valor){
     printf("  R$ %11.2f   ##\n",(*valor));
 
 }
+int PEDIDOS_verificarPedidoComCPF(int idPedido, char* cpf){
+    int i;
+    SELECT_ALL_FROM_PEDIDOS();
+    for(i = 0 ; i < quantidadePedidos; i++){
+        if(idPedido == Pedidos[i].codigo && strcmp(cpf, Pedidos[i].cpfCliente)== 0){
+            return 1;
+        }
+    }
+    return 0;
+}
 void optionViewPedidos(){
     int op, pedido;
 
@@ -361,7 +419,12 @@ void optionViewPedidos(){
     receberValorInt(&op);
     switch(op){
         case 1:
-            menu();
+            if(tipoConsulta == 1){
+                menu();
+            } else {
+                CLIENTES_view();
+            }
+
         break;
         case 2:
             PEDIDOS_add();
@@ -370,7 +433,16 @@ void optionViewPedidos(){
             printf("             INFORME O NÚMERO DO PEDIDO\n");
             printf("             ");
             receberValorInt(&pedido);
-            ITENS_PEDIDO_view(pedido);
+            if(tipoConsulta == 2){
+                while(PEDIDOS_verificarPedidoComCPF(pedido, cpfConsulta) == 0){
+                    MessageBox(0,"ERRO!\n", "MEUS PEDIDOS",0);
+                    printf("             INFORME O NÚMERO DO PEDIDO\n");
+                    printf("             ");
+                    receberValorInt(&pedido);
+                }
+
+            }
+            ITENS_PEDIDO_view(pedido, tipoConsulta);
         break;
         default:
             MessageBox(0,"OPÇÃO INVÁLIDA!\n", "PRODUTOS",0);
