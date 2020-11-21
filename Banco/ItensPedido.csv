@@ -1,11 +1,15 @@
-{ (idItem): <4> ; (idPedido): <3> ; (idProduto): <4> ; (nomeProduto): <Monitor> 	; (quantidade): <1> ; (valorProduto): <120,00> ; }
-{ (idItem): <5> ; (idPedido): <4> ; (idProduto): <17> ; (nomeProduto): <Caneta> 	; (quantidade): <1> ; (valorProduto): <1,50> ; }
 { (idItem): <6> ; (idPedido): <5> ; (idProduto): <12> ; (nomeProduto): <Cabo USB> 	; (quantidade): <1> ; (valorProduto): <150,00> ; }
-{ (idItem): <7> ; (idPedido): <6> ; (idProduto): <17> ; (nomeProduto): <Caneta> 	; (quantidade): <1> ; (valorProduto): <1,50> ; }
-{ (idItem): <8> ; (idPedido): <7> ; (idProduto): <4> ; (nomeProduto): <Monitor> 	; (quantidade): <1> ; (valorProduto): <120,00> ; }
-{ (idItem): <9> ; (idPedido): <8> ; (idProduto): <4> ; (nomeProduto): <Monitor> 	; (quantidade): <1> ; (valorProduto): <120,00> ; }
-{ (idItem): <12> ; (idPedido): <11> ; (idProduto): <17> ; (nomeProduto): <Caneta> 	; (quantidade): <1> ; (valorProduto): <1,50> ; }
-{ (idItem): <13> ; (idPedido): <12> ; (idProduto): <17> ; (nomeProduto): <Caneta> 	; (quantidade): <1> ; (valorProduto): <1,50> ; }
-{ (idItem): <14> ; (idPedido): <13> ; (idProduto): <18> ; (nomeProduto): <SSD> 	; (quantidade): <3> ; (valorProduto): <350,00> ; }
-{ (idItem): <15> ; (idPedido): <13> ; (idProduto): <3> ; (nomeProduto): <Fone> 	; (quantidade): <3> ; (valorProduto): <10,00> ; }
-{ (idItem): <11> ; (idPedido): <14> ; (idProduto): <21> ; (nomeProduto): <Fonte 50W> 	; (quantidade): <1> ; (valorProduto): <55,00> ; }
+{ (idItem): <5> ; (idPedido): <7> ; (idProduto): <21> ; (nomeProduto): <Fonte 50W> 	; (quantidade): <4> ; (valorProduto): <55,00> ; }
+{ (idItem): <3> ; (idPedido): <8> ; (idProduto): <11> ; (nomeProduto): <Teclado> 	; (quantidade): <5> ; (valorProduto): <12,00> ; }
+{ (idItem): <4> ; (idPedido): <8> ; (idProduto): <15> ; (nomeProduto): <Cabo HDMI> 	; (quantidade): <2> ; (valorProduto): <100,00> ; }
+{ (idItem): <5> ; (idPedido): <9> ; (idProduto): <2> ; (nomeProduto): <Celular> 	; (quantidade): <5> ; (valorProduto): <1250,00> ; }
+{ (idItem): <6> ; (idPedido): <9> ; (idProduto): <6> ; (nomeProduto): <Notebook> 	; (quantidade): <2> ; (valorProduto): <2500,00> ; }
+{ (idItem): <7> ; (idPedido): <9> ; (idProduto): <5> ; (nomeProduto): <Tablet> 	; (quantidade): <2> ; (valorProduto): <500,00> ; }
+{ (idItem): <8> ; (idPedido): <10> ; (idProduto): <3> ; (nomeProduto): <Fone> 	; (quantidade): <1> ; (valorProduto): <10,00> ; }
+{ (idItem): <9> ; (idPedido): <10> ; (idProduto): <19> ; (nomeProduto): <Estabilizador> 	; (quantidade): <1> ; (valorProduto): <50,00> ; }
+{ (idItem): <10> ; (idPedido): <11> ; (idProduto): <12> ; (nomeProduto): <Cabo USB> 	; (quantidade): <2> ; (valorProduto): <150,00> ; }
+{ (idItem): <11> ; (idPedido): <11> ; (idProduto): <15> ; (nomeProduto): <Cabo HDMI> 	; (quantidade): <1> ; (valorProduto): <100,00> ; }
+{ (idItem): <12> ; (idPedido): <12> ; (idProduto): <4> ; (nomeProduto): <Monitor> 	; (quantidade): <1> ; (valorProduto): <108,00> ; }
+{ (idItem): <13> ; (idPedido): <13> ; (idProduto): <3> ; (nomeProduto): <Fone> 	; (quantidade): <1> ; (valorProduto): <9,00> ; }
+{ (idItem): <14> ; (idPedido): <14> ; (idProduto): <3> ; (nomeProduto): <Fone> 	; (quantidade): <1> ; (valorProduto): <9,00> ; }
+{ (idItem): <15> ; (idPedido): <14> ; (idProduto): <2> ; (nomeProduto): <Celular Nokia> 	; (quantidade): <3> ; (valorProduto): <9,00> ; }

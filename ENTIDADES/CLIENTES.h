@@ -117,5 +117,72 @@ void CLIENTES_cadastrarCliente(char *cpf){
 
     fclose(CLIENTES);
 }
+void CLIENTES_view(){
+    int i,j, op;
+    char cpf[15];
+    float valorTotal;
+    bool valido;
+    SELECT_ALL_FROM_CLIENTES();
+    system("cls");
+    tituloTabela("Clientes");
+    printf("\n\n");
+    printf("             ##############################################################################################\n");
+    printf("             ##  CPF             #                 NOME                 #  VALOR DAS COMPRAS REALIZADAS  ##\n");
+    printf("             ##############################################################################################\n");
 
+    for(i = 0; i < quantidadeClientes; i++){
+        memset(cpf, '\000', strlen(cpf) * sizeof(char));
+        strcpy(cpf, Clientes[i].cpf);
+        printf("             ##  ");
+        printf("%s  #  ", SERVICOS_formatCpf(Clientes[i].cpf));
+        printf("%s ",Clientes[i].nome);
+        for(j = strlen(Clientes[i].nome); j < 35; j++){
+            printf(" ");
+        }
+
+        valorTotal = PEDIDOS_consultarTotalPorCpf(cpf);
+        if(valorTotal > 0){
+            printf("#  R$               %11.2f  ", valorTotal);
+        } else {
+            printf("#    NENHUM PEDIDO ENCONTRADO    ");
+        }
+        printf("##\n");
+    }
+    printf("             ##############################################################################################\n\n");
+    printf("\n\n");
+        printf("             ####################   #####################\n");
+        printf("             ##                ##   ##                 ##\n");
+        printf("             ## [ 1 ] VOLTAR   ##   ## [ 2 ] PEDIDOS   ##\n");
+        printf("             ##                ##   ##                 ##\n");
+        printf("             ####################   #####################\n");
+        printf("\n              ");
+        receberValorInt(&op);
+        switch(op){
+            case 1:
+                menu();
+            break;
+            case 2:
+                memset(cpf, '\000', strlen(cpf) * sizeof(char));
+                do{
+                    printf("             INFORME O CPF DO CLIENTE\n");
+                    printf("             ");
+                    fflush(stdin);
+                    gets(cpf);
+                    fflush(stdin);
+                    valido = SERVICOS_validarCPF(cpf);
+                }while(valido == 0);
+                valorTotal = PEDIDOS_consultarTotalPorCpf(cpf);
+                if(valorTotal > 0){
+                    PEDIDOS_viewPedidosCliente(cpf);
+                } else {
+                    MessageBox(0,"CPF INFORMADO NÃO POSSUI PEDIDO!\n", "MEUS PEDIDOS",0);
+                    CLIENTES_view();
+                }
+            break;
+            default:
+                MessageBox(0,"OPÇÃO INVÁLIDA!\n", "CLIENTES",0);
+                CLIENTES_view();
+
+        }
+}
 #endif // CLIENTES_H_INCLUDED
